@@ -1,4 +1,20 @@
 <?php
+/**
+ * 
+ * Paper class to handle the paper endpoint
+ * Returns all the papers in the database
+ * Allows for parameters to be passed to filter the results
+ * 
+ * @param mixed initialiseSQL - sets the SQL query and params
+ * 		- if no params are passed, returns all papers
+ * 		- if params are passed, filters the results
+ * 		- PARAMS: 
+ * 			- track: returns papers from a specific track
+ * @param array endpointParams - creates an array of params to be passed
+ * 
+ * @author Tom Shaw
+ * 
+ */
 class Paper extends Endpoint
 {
 	protected function initialiseSQL() {

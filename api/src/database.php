@@ -1,4 +1,17 @@
 <?php
+/**
+ * 
+ * A class to handle database connections and queries
+ * 
+ * @param PDO $dbConnection - the database connection
+ * @param mixed $setDbConnection - sets up the file path to the database or errors
+ * @param mixed $executeSQL - prepares and executes the SQL query and returns the data
+ * 
+ * 
+ * @author Tom Shaw
+ * @author John Rooksby
+ * 
+ */
 class Database
 {
 	private $dbConnection;

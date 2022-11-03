@@ -1,4 +1,25 @@
 <?php
+/**
+ * 
+ * An abstract class to be used to create endpoints for the API
+ * 
+ * @var array $data - the data to be returned as JSON
+ * @var string $sql - the SQL query to be executed
+ * @var array $sqlParams - the parameters to be passed to the SQL query
+ * 
+ * @param mixed $setSQL - sets the SQL query to be executed
+ * @param mixed $setSQLParams - gets the SQL params to be passed to the SQL query
+ * @param mixed $initialiseSQL - initialises the SQL query and params
+ * @param mixed $setData - sets the data to be returned as JSON
+ * @param mixed $getData - gets the data to be returned as JSON
+ * @param array $endpointParams - creates an empty array to insert params
+ * @param mixed validateParams - checks if the params are valid and HTTP error 400 if not
+ * 
+ * 
+ * @author Tom Shaw
+ * @author John Rooksby
+ * 
+ */
 abstract class Endpoint
 {
 	private $data;
