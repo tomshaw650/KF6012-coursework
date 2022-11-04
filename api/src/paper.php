@@ -19,7 +19,7 @@
 class Paper extends Endpoint
 {
 	protected function initialiseSQL() {
-		$sql = "SELECT paper.paper_id, paper.title, paper.award, paper.abstract, track.short_name AS track, track.name
+		$sql = "SELECT paper.paper_id, paper.title, paper.award AS has_award, paper.abstract, track.short_name AS track_key, track.name AS track_name
                 FROM paper
                 INNER JOIN track ON (paper.track_id = track.track_id)
 				INNER JOIN paper_has_author ON (paper.paper_id = paper_has_author.paper_id)";
