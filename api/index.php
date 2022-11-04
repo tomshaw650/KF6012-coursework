@@ -19,12 +19,21 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))) {
 	switch ($path) {
 		case '/':
 			$endpoint = new Base();
+			http_response_code(200);
 			break;
 		case '/paper':
 		case '/paper/':
 		case '/papers':
 		case '/papers/':
 			$endpoint = new Paper();
+			http_response_code(200);
+			break;
+		case '/author':
+		case '/author/':
+		case '/authors':
+		case '/authors/':
+			$endpoint = new Author();
+			http_response_code(200);
 			break;
 		default:
 			$endpoint = new ClientError("Path not found: " . $path, 404);
@@ -35,4 +44,4 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))) {
 $response = $endpoint->getData();
 
 // return the data as formatted JSON
-echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
