@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * Class to handle the base endpoint of the API
+ * Class to handle the base endpoint of the API (/)
  * Used to display my details, and connec to DB to display the conference title
  * Extends the Endpoint class
  * 

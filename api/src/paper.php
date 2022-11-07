@@ -1,8 +1,8 @@
 <?php
 /**
  * 
- * Paper class to handle the paper endpoint
- * Returns all the papers in the database
+ * Paper class to handle the /paper endpoint
+ * Returns all the papers from the database
  * Allows for parameters to be passed to filter the results
  * 
  * @param mixed initialiseSQL - sets the SQL query and params
