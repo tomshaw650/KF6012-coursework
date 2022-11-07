@@ -8,12 +8,12 @@ sidebar_position: 6
 
 The `paper.php` file is the class used for the paper endpoint of the API. It is located in the `src` directory of the API.
 
-The `paper.php` file contains the `Paper` class, and extends the [`Endpoint`](/v1/API/Endpoints/endpoint-php).
+The `paper.php` file contains the `Paper` class, and extends the [`Endpoint`](/v1/API/Endpoints/endpoint-php). The `Paper` class is used to return all papers from the database.
 
 ## Methods
 
 The `Paper` class contains the following methods:
-- `__construct()` - The constructor for the `Paper` class. This uses the `initialiseSQL()` method from the [`Endpoint`](/v1/API/Endpoints/endpoint-php) class to execute an SQL query.
+- `initialiseSQL()` - The main function for the `Paper` class. Inherited from the [`Endpoint`](/v1/API/Endpoints/endpoint-php) class to execute an SQL query.
   - `$sql` is set to the SQL query to get all papers from the database.
   - `setSQL()` is called to set the SQL query.
 - `endpointParams()` is set to an array of the parameters that can be used in the endpoint - 'track', and 'author_id'.
