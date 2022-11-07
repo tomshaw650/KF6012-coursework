@@ -20,20 +20,7 @@ The frontend is built in React with [create-react-app](https://create-react-app.
 
 The documentation is built using [Docusaurus](https://docusaurus.io/), a static site generator.
 
-
-## EXAMPLE MARKDOWN STUFF (TO DELETE)
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
 ```bash
 cd my-website
 npm run start
 ```
-
-The `cd` command changes 
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
