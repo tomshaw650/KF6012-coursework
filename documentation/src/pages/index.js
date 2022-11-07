@@ -22,7 +22,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--secondary button--lg"
-            href="http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/">
+            href="http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/app">
             Assignment Link
           </Link>
         </div>
