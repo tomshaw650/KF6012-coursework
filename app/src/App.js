@@ -1,5 +1,18 @@
+import React from "react";
 import "./index.css";
 
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div className="h-screen w-screen bg-bgblack">
+      <span className="sr-only">CHI Play Conference 2021</span>
+      <NavBar />
+
+      <div>
+        <Header />
+      </div>
+    </div>
+  );
 }

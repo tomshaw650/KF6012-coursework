@@ -1,3 +1,49 @@
+/* - Tailwind CSS - */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Font */
+@font-face {
+  font-family: "Rubik";
+  src: url("../public/fonts/Rubik-VariableFont_wght.ttf");
+}
+
+/* Variables */
+:root {
+}
+
+/* ----- TYPOGRAPHY ----- */
+/* Navigation Bar */
+a {
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)),
+    linear-gradient(
+      to right,
+      rgba(207, 0, 0, 1) 0%,
+      rgba(157, 57, 34, 1) 31%,
+      rgba(1, 96, 160, 1) 100%
+    );
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+a:hover,
+a:focus {
+  background-size: 0 0.1em, 100% 0.1em;
+}
+
+/* Header */
+h1 {
+  font-weight: 800;
+  background: linear-gradient(
+    90deg,
+    rgba(207, 0, 0, 1) 0%,
+    rgba(157, 57, 34, 1) 31%,
+    rgba(1, 96, 160, 1) 100%
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
