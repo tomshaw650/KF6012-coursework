@@ -9,6 +9,12 @@
   src: url("../public/fonts/Rubik-VariableFont_wght.ttf");
 }
 
+@layer base {
+  body {
+    @apply bg-bgblack;
+  }
+}
+
 /* ----- TYPOGRAPHY ----- */
 /* Navigation Bar */
 a {
