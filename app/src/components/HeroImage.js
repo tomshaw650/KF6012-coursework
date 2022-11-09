@@ -8,7 +8,7 @@ export default function HeroImage(props) {
       <img
         src={hero_img1}
         alt="hero_img1"
-        className="mb-14 mt-16 h-96 w-96 rounded-full"
+        className="ml-12 h-72 w-72 rounded-full md:mb-14 md:mt-16 md:flex md:h-96 md:w-96"
       />
     </>
   );

@@ -14,7 +14,7 @@ export default function App() {
         <Header />
         <NavBar />
       </div>
-      <div className="flex justify-evenly">
+      <div className="flex flex-col justify-evenly md:flex-row">
         <LandingContent
           title="Discover the Conference"
           body="Welcome to the main conference website. Here you can browse all related

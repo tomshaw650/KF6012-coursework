@@ -7,7 +7,7 @@ export default function NavBar() {
     { name: "Authors", link: "/authors" },
   ];
   return (
-    <nav className="m-5 mr-24 flex justify-center">
+    <nav className="m-5 mr-24 hidden justify-center md:flex">
       <ul className="mt-8 flex flex-row gap-12 text-2xl">
         {navItems.map((item) => (
           <li key={item.name}>
