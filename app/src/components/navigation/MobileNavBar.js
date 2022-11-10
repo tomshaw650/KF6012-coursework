@@ -1,32 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { MdClose } from "react-icons/md";
+import { FiMenu } from "react-icons/fi";
 
-export default function NavBar() {
-  const navItems = [
-    { name: "Home", link: "/" },
-    {
-      name: "Tracks",
-      link: "/tracks",
-      subMenu: [
-        { name: "Interactivity", link: "/tracks/interactivity" },
-        { name: "Full Papers", link: "/tracks/fullpapers" },
-        { name: "WIP", link: "/tracks/wip" },
-        { name: "Competition", link: "/tracks/competition" },
-        { name: "Doctoral", link: "/tracks/doctoral" },
-        { name: "Rapid", link: "/tracks/rapid" },
-      ],
-    },
-    { name: "Authors", link: "/authors" },
-  ];
+import { navItems } from "./navItems";
+
+export default function MobileNavBar() {
+  const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const handleToggle = () => {
+    setNavbarOpen((prev) => !prev);
+  };
+
+  const closeMenu = () => {
+    setNavbarOpen(false);
+  };
 
   return (
-    <nav className="m-5 mr-24 hidden justify-center md:flex">
-      <ul className="mt-8 flex flex-row gap-12 text-2xl">
+    <nav className="md:hidden">
+      <button
+        className="relative top-16 right-6 text-white"
+        onClick={handleToggle}
+      >
+        {navbarOpen ? (
+          <MdClose style={{ color: "#fff", width: "20px", height: "40px" }} />
+        ) : (
+          <FiMenu style={{ color: "#fff", width: "20px", height: "40px" }} />
+        )}
+      </button>
+      <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
         {navItems.map((item) => (
-          <li key={item.name} className="dropdown">
-            <a href={item.link} className="flex flex-row text-white">
+          <li key={item.name} className="dropdown m-10">
+            <a
+              onClick={closeMenu}
+              href={item.link}
+              className="block text-white"
+            >
               {item.name}
               {item.subMenu ? (
-                // if the title is hovered, flip the dropdown arrow
                 <div className="mt-1 flex">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

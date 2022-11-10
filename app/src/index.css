@@ -9,6 +9,8 @@
   src: url("../public/fonts/Rubik-VariableFont_wght.ttf");
 }
 
+/* ----- BACKGROUND ----- */
+/* Background Colour */
 @layer base {
   body {
     @apply bg-bgblack;
@@ -50,6 +52,8 @@ h1 {
   background-clip: text;
 }
 
+/* ----- NAVIGATION BAR ----- */
+
 /* Dropdown */
 .dropdown {
   position: relative;
@@ -66,4 +70,34 @@ h1 {
 
 .dropdown:hover .arrow {
   transform: rotate(180deg);
+}
+
+/* Mobile Navigation Menu */
+.navBar {
+  position: relative;
+}
+
+.menuNav {
+  overflow-y: scroll;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  background: black;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  max-width: 290px;
+  z-index: 10;
+  transition: width 0.5s ease-in-out;
+}
+
+.menuNav.showMenu {
+  width: 100%;
+}
+
+.menuNav a {
+  padding: 10px 40px;
+  font-weight: bold;
 }
