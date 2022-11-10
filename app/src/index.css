@@ -49,3 +49,21 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
