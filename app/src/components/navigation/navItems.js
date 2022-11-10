@@ -1,15 +1,15 @@
 export const navItems = [
   { name: "Home", link: "/" },
   {
-    name: "Tracks",
-    link: "/tracks",
+    name: "Papers",
+    link: "/papers",
     subMenu: [
-      { name: "Interactivity", link: "/tracks/interactivity" },
-      { name: "Full Papers", link: "/tracks/fullpapers" },
-      { name: "WIP", link: "/tracks/wip" },
-      { name: "Competition", link: "/tracks/competition" },
-      { name: "Doctoral", link: "/tracks/doctoral" },
-      { name: "Rapid", link: "/tracks/rapid" },
+      { name: "Interactivity", link: "/papers/interactivity" },
+      { name: "Full Papers", link: "/papers/fullpapers" },
+      { name: "WIP", link: "/papers/wip" },
+      { name: "Competition", link: "/papers/competition" },
+      { name: "Doctoral", link: "/papers/doctoral" },
+      { name: "Rapid", link: "/papers/rapid" },
     ],
   },
   { name: "Authors", link: "/authors" },
