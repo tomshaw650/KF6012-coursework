@@ -10,13 +10,13 @@ import MobileNavBar from "./components/navigation/MobileNavBar";
 
 export default function App() {
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-screen xl:overflow-hidden">
       <div className="flex justify-between bg-bgdark">
         <Header />
         <NavBar />
         <MobileNavBar />
       </div>
-      <div className="flex flex-col justify-evenly md:flex-row">
+      <div className="mt-10 flex flex-row justify-center">
         <LandingContent
           title="Discover the Conference"
           body="Welcome to the main conference website. Here you can browse all related
