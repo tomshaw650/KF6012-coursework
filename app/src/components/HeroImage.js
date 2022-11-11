@@ -8,7 +8,7 @@ export default function HeroImage() {
       <img
         src={hero_img1}
         alt="Dark Conference Audience by user Headway on website Unsplash"
-        className="ml-12 h-72 w-72 rounded-full ring-4 ring-white md:mb-14 md:mt-16 md:flex md:h-96 md:w-96"
+        className="ml-12 rounded-full ring-4 ring-white md:mb-14 md:mt-16 md:flex md:h-96 md:w-96"
       />
     </>
   );
