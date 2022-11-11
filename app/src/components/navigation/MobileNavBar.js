@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 
@@ -30,9 +31,9 @@ export default function MobileNavBar() {
       <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
         {navItems.map((item) => (
           <li key={item.name} className="dropdown m-10">
-            <a
+            <Link
               onClick={closeMenu}
-              href={item.link}
+              to={item.link}
               className="block text-white"
             >
               {item.name}
@@ -54,17 +55,17 @@ export default function MobileNavBar() {
                   </svg>
                 </div>
               ) : null}
-            </a>
+            </Link>
             {item.subMenu && (
               <ul className="dropdown-menu absolute mt-2 rounded-md bg-white shadow-lg">
                 {item.subMenu.map((subItem) => (
                   <li key={subItem.name}>
-                    <a
-                      href={subItem.link}
+                    <Link
+                      to={subItem.link}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       {subItem.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

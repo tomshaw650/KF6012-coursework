@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { navItems } from "./navItems";
 
 export default function NavBar() {
@@ -7,7 +9,7 @@ export default function NavBar() {
       <ul className="mt-8 flex flex-row gap-12 text-2xl">
         {navItems.map((item) => (
           <li key={item.name} className="dropdown">
-            <a href={item.link} className="flex flex-row text-white">
+            <Link to={item.link} className="flex flex-row text-white">
               {item.name}
               {item.subMenu ? (
                 <div className="mt-1 flex">
@@ -27,17 +29,17 @@ export default function NavBar() {
                   </svg>
                 </div>
               ) : null}
-            </a>
+            </Link>
             {item.subMenu && (
               <ul className="dropdown-menu absolute mt-2 rounded-md bg-white shadow-lg">
                 {item.subMenu.map((subItem) => (
                   <li key={subItem.name}>
-                    <a
-                      href={subItem.link}
+                    <Link
+                      to={subItem.link}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       {subItem.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
