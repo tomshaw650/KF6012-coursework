@@ -18,8 +18,9 @@
 }
 
 /* ----- TYPOGRAPHY ----- */
-/* Navigation Bar */
-a {
+/*      Navigation Bar 
+  (leveraging normal CSS here) */
+a:not(.header-link) {
   background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)),
     linear-gradient(
       to right,
@@ -38,7 +39,8 @@ a:focus {
   background-size: 0 0.1em, 100% 0.1em;
 }
 
-/* Header */
+/*          Header 
+  (Once again using normal CSS) */
 h1 {
   font-weight: 800;
   background: linear-gradient(
@@ -53,51 +55,42 @@ h1 {
 }
 
 /* ----- NAVIGATION BAR ----- */
+@layer components {
+  /* Dropdown Menu */
+  .dropdown {
+    @apply relative inline-block;
+  }
 
-/* Dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  z-index: 1;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
+  .dropdown-menu {
+    @apply hidden absolute z-10; 
+  }
 
-.dropdown:hover .arrow {
-  transform: rotate(180deg);
-}
+  /* Mobile Navigation Menu */
+  .navBar {
+    @apply relative;
+  }
 
-/* Mobile Navigation Menu */
-.navBar {
-  position: relative;
-}
+  .menuNav {
+    @apply overflow-y-hidden list-none fixed top-0 bg-black left-0 bottom-0 h-screen w-0 overflow-hidden max-w-[290px] z-20 transition-[width] duration-75 ease-in-out; 
+  }
 
-.menuNav {
-  overflow-y: scroll;
-  list-style: none;
-  position: fixed;
-  top: 0;
-  background: black;
-  left: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 0;
-  overflow: hidden;
-  max-width: 290px;
-  z-index: 10;
-  transition: width 0.5s ease-in-out;
+  .menuNav.showMenu {
+    @apply w-full;
+  }
+
+  .menuNav a {
+    @apply font-bold px-3 py-10;
+  }
 }
 
-.menuNav.showMenu {
-  width: 100%;
-}
+@media (hover: hover) {
+  @layer components {
+    .dropdown:hover .dropdown-menu {
+      @apply block;
+    }
 
-.menuNav a {
-  padding: 10px 40px;
-  font-weight: bold;
+    .dropdown:hover .arrow {
+      @apply rotate-180;
+    }
+  }
 }
