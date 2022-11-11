@@ -1,7 +1,7 @@
 {
-  "name": "app",
-  "homepage": ".",
-  "version": "0.1.0",
+  "name": "kf6012-app",
+  "homepage": "http://unn-w123456.newnumyspace.co.uk/kf6012/coursework/app",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.3",

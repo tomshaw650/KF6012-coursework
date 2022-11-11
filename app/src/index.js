@@ -5,9 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const basename = document.querySelector('base')?.getAttribute('href') ?? '/'  
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
