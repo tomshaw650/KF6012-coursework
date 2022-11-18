@@ -4,10 +4,15 @@ import NavBar from "../components/navigation/NavBar";
 import Header from "../components/Header";
 import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
+import Pagination from "../components/navigation/Pagination";
+import Footer from "../components/Footer";
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(10);
 
   useEffect(() => {
     fetch(
@@ -20,7 +25,12 @@ export default function AuthorsPage() {
       });
   }, []);
 
-  const authorList = authors.map((author) => (
+  const lastRow = currentPage * rowsPerPage;
+  const firstRow = lastRow - rowsPerPage;
+  const currentRows = authors.slice(firstRow, lastRow);
+  const nRows = Math.ceil(authors.length / rowsPerPage);
+
+  const authorList = currentRows.map((author) => (
     <tr className="hover:bg-gray-600" key={author.author_id}>
       <td className="text-center text-lg">{author.first_name}</td>
       <td className="text-center text-lg">{author.middle_initial}</td>
@@ -40,14 +50,24 @@ export default function AuthorsPage() {
           Authors
         </h1>
         {loading ? (
-          <p>Loading...</p>
+          <div className="mt-20 flex justify-center">
+            <div className="loader h-32 w-32 rounded-full border-8 border-t-8 border-gray-200 ease-linear"></div>
+          </div>
         ) : (
-          <Table
-            headers={["First Name", "Middle Initial", "Last Name"]}
-            tableBody={authorList}
-          />
+          <>
+            <Table
+              headers={["First Name", "Middle Initial", "Last Name"]}
+              tableBody={authorList}
+            />
+            <Pagination
+              nRows={nRows}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
