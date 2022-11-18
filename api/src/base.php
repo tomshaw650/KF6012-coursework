@@ -32,7 +32,7 @@ class Base extends Endpoint
 		);
 
 		$docs = array(
-			"link" => "http://unn_w19025481.newnumyspace.co.uk/kf6012/coursework/api/docs"
+			"link" => "http://unn_w19025481.newnumyspace.co.uk/kf6012/coursework/documentation"
 		);
 
 		$conference = array(
