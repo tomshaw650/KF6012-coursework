@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/navigation/NavBar";
 import Header from "../components/Header";
 import MobileNavBar from "../components/navigation/MobileNavBar";
+import Table from "../components/Table";
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
@@ -41,25 +42,10 @@ export default function AuthorsPage() {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          // center the table on the page
-          <div className="flex justify-center">
-            <table className="mt-5 w-4/5 rounded-2xl text-white">
-              <thead className="bg-black">
-                <tr>
-                  <th className="p-4 text-center text-xl font-bold">
-                    First Name
-                  </th>
-                  <th className="p-4 text-center text-xl font-bold">
-                    Middle Name
-                  </th>
-                  <th className="p-4 text-center text-xl font-bold">
-                    Last Name
-                  </th>
-                </tr>
-              </thead>
-              <tbody>{authorList}</tbody>
-            </table>
-          </div>
+          <Table
+            headers={["First Name", "Middle Initial", "Last Name"]}
+            tableBody={authorList}
+          />
         )}
       </div>
     </div>
