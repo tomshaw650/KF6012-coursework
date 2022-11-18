@@ -13,7 +13,7 @@ export default function TrackPage() {
   console.log(track);
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-screen">
       <div className="flex justify-between bg-bgdark">
         <Header />
         <NavBar />

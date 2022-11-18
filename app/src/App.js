@@ -10,7 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-screen">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/papers">
