@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/navigation/NavBar";
 import Header from "../components/Header";
 import MobileNavBar from "../components/navigation/MobileNavBar";
+import Spinner from "../components/Spinner";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
@@ -50,9 +51,7 @@ export default function AuthorsPage() {
           Authors
         </h1>
         {loading ? (
-          <div className="mt-20 flex justify-center">
-            <div className="loader h-32 w-32 rounded-full border-8 border-t-8 border-gray-200 ease-linear"></div>
-          </div>
+          <Spinner />
         ) : (
           <>
             <Table
