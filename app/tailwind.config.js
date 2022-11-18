@@ -18,6 +18,7 @@ module.exports = {
         red: "#CF0000",
         orange: "#9D3922",
         blue: "#0160A0",
+        modal: "rgba(91, 112, 131, 0.4);",
       },
     },
   },

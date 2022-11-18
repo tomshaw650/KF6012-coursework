@@ -1,25 +1,88 @@
-import React from "react";
-import "../index.css";
+import React, { useEffect, useState } from "react";
+
+import { Outlet, useLocation } from "react-router-dom";
 
 import NavBar from "../components/navigation/NavBar";
+import Td from "../components/Td";
 import Header from "../components/Header";
-import LandingContent from "../components/LandingContent";
 import MobileNavBar from "../components/navigation/MobileNavBar";
+import Table from "../components/Table";
+import Pagination from "../components/navigation/Pagination";
+import Footer from "../components/Footer";
 
-export default function NotFoundPage() {
+export default function AuthorsPage() {
+  const location = useLocation();
+  const [authors, setAuthors] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(10);
+
+  useEffect(() => {
+    fetch(
+      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/author"
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        setLoading(false);
+        setAuthors(json.data);
+      });
+  }, []);
+
+  const lastRow = currentPage * rowsPerPage;
+  const firstRow = lastRow - rowsPerPage;
+  const currentRows = authors.slice(firstRow, lastRow);
+  const nRows = Math.ceil(authors.length / rowsPerPage);
+
+  const authorList = currentRows.map((author) => (
+    <tr className="hover:bg-gray-600" key={author.author_id}>
+      <Td
+        to={`${author.author_id}`}
+        state={{ background: location }}
+        className="text-center text-lg"
+      >
+        {author.author_id}
+      </Td>
+      <td className="text-center text-lg">{author.first_name}</td>
+      <td className="text-center text-lg">{author.middle_initial}</td>
+      <td className="text-center text-lg">{author.last_name}</td>
+    </tr>
+  ));
+
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-screen">
       <div className="flex justify-between bg-bgdark">
         <Header />
         <NavBar />
         <MobileNavBar />
       </div>
-      <div className="flex flex-col justify-evenly md:flex-row">
-        <LandingContent
-          title="Authors"
-          body="This page will have the authors on it."
-        />
+      <div className="flex flex-col">
+        <h1 className="mt-2 flex justify-center text-3xl text-white">
+          Authors
+        </h1>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <Table
+              headers={[
+                "Author ID",
+                "First Name",
+                "Middle Initial",
+                "Last Name",
+              ]}
+              tableBody={authorList}
+            />
+            <Pagination
+              nRows={nRows}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        )}
       </div>
+      <Footer />
+      <Outlet />
     </div>
   );
 }

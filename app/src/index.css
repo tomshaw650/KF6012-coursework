@@ -7,6 +7,7 @@
 @font-face {
   font-family: "Rubik";
   src: url("../public/fonts/Rubik-VariableFont_wght.ttf");
+  font-display: swap;
 }
 
 /* ----- BACKGROUND ----- */
@@ -20,7 +21,7 @@
 /* ----- TYPOGRAPHY ----- */
 /*      Navigation Bar 
   (leveraging normal CSS here) */
-a:not(.header-link) {
+a:not(.header-link, .table-contents) {
   background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)),
     linear-gradient(
       to right,
@@ -62,7 +63,7 @@ h1 {
   }
 
   .dropdown-menu {
-    @apply hidden absolute z-10; 
+    @apply absolute z-10 hidden;
   }
 
   /* Mobile Navigation Menu */
@@ -71,7 +72,7 @@ h1 {
   }
 
   .menuNav {
-    @apply overflow-y-hidden list-none fixed top-0 bg-black left-0 bottom-0 h-screen w-0 overflow-hidden max-w-[290px] z-20 transition-[width] duration-75 ease-in-out; 
+    @apply fixed top-0 left-0 bottom-0 z-20 h-screen w-0 max-w-[290px] list-none overflow-hidden overflow-y-hidden bg-black transition-[width] duration-75 ease-in-out;
   }
 
   .menuNav.showMenu {
@@ -79,7 +80,7 @@ h1 {
   }
 
   .menuNav a {
-    @apply font-bold px-3 py-10;
+    @apply px-3 py-10 font-bold;
   }
 }
 

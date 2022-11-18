@@ -10,7 +10,7 @@ import MobileNavBar from "../components/navigation/MobileNavBar";
 
 export default function LandingPage() {
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-screen">
       <div className="flex justify-between bg-bgdark">
         <Header />
         <NavBar />
