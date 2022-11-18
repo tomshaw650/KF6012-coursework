@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 
+import { Outlet, useLocation } from "react-router-dom";
+
 import NavBar from "../components/navigation/NavBar";
+import Td from "../components/Td";
 import Header from "../components/Header";
 import MobileNavBar from "../components/navigation/MobileNavBar";
-import Spinner from "../components/Spinner";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
 
 export default function AuthorsPage() {
+  const location = useLocation();
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,6 +36,13 @@ export default function AuthorsPage() {
 
   const authorList = currentRows.map((author) => (
     <tr className="hover:bg-gray-600" key={author.author_id}>
+      <Td
+        to={`${author.author_id}`}
+        state={{ background: location }}
+        className="text-center text-lg"
+      >
+        {author.author_id}
+      </Td>
       <td className="text-center text-lg">{author.first_name}</td>
       <td className="text-center text-lg">{author.middle_initial}</td>
       <td className="text-center text-lg">{author.last_name}</td>
@@ -51,11 +61,16 @@ export default function AuthorsPage() {
           Authors
         </h1>
         {loading ? (
-          <Spinner />
+          <p>Loading...</p>
         ) : (
           <>
             <Table
-              headers={["First Name", "Middle Initial", "Last Name"]}
+              headers={[
+                "Author ID",
+                "First Name",
+                "Middle Initial",
+                "Last Name",
+              ]}
               tableBody={authorList}
             />
             <Pagination
@@ -67,6 +82,7 @@ export default function AuthorsPage() {
         )}
       </div>
       <Footer />
+      <Outlet />
     </div>
   );
 }

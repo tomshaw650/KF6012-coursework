@@ -19,7 +19,7 @@ const Pagination = ({ nRows, currentPage, setCurrentPage, props }) => {
       <ul className="flex justify-center">
         <li className="p-2">
           <button
-            className="rounded bg-orange py-2 px-4 font-bold text-white"
+            className="rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"
             onClick={prevPage}
           >
             Previous
@@ -31,7 +31,7 @@ const Pagination = ({ nRows, currentPage, setCurrentPage, props }) => {
         <li className="p-2">
           <button
             //hover increases size of button animated
-            className="hover:bg- rounded bg-blue py-2 px-4 font-bold text-white"
+            className="hover:bg- rounded bg-blue py-2 px-4 font-bold text-white hover:bg-sky-900"
             onClick={nextPage}
           >
             Next
