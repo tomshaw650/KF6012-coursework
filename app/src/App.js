@@ -14,25 +14,27 @@ export default function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
 
+  //have the abstract model open in front of the previous page
+
   return (
     <div className="h-full w-screen" id="toplevel">
       <Routes location={background || location}>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/papers">
-          <Route index element={<PapersPage />} />
+
+        <Route path="/papers" element={<PapersPage />}>
           <Route path="/papers/view/:paperId" element={<AbstractModal />} />
           <Route path="/papers/:track" element={<TrackPage />} />
         </Route>
+
         <Route path="/authors" element={<AuthorsPage />}>
           <Route path="/authors/:authorId" element={<AuthorModal />} />
         </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      {background && <Route path="view/:paperId" element={<AbstractModal />} />}
       {background && (
-        <Routes>
-          <Route path="/:authorId" element={<AuthorModal />} />
-          <Route path="/view/:paperId" element={<AbstractModal />} />
-        </Routes>
+        <Route path="author/:authorId" element={<AuthorModal />} />
       )}
     </div>
   );
