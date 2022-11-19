@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../index.css";
 
 import { Outlet, useLocation } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
