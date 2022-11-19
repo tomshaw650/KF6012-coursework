@@ -68,6 +68,17 @@ class Paper extends Endpoint
 			$sqlParams['paper_id'] = $_GET['paper_id'];
 		}
 
+		if (filter_has_var(INPUT_GET, 'search')) {
+			$search = htmlspecialchars($_GET['search']);
+
+			if (isset($where)) {
+				$where .= " AND (paper.title LIKE :search OR paper.abstract LIKE :search)";
+			} else {
+				$where = " WHERE (paper.title LIKE :search OR paper.abstract LIKE :search)";
+			}
+			$sqlParams['search'] = '%' . $search . '%';
+		}
+
 		if (isset($where)) {
 			$sql .= $where;
 		}
@@ -77,6 +88,6 @@ class Paper extends Endpoint
 	}
 
 	protected function endpointParams() {
-		return ['track', 'author_id', 'paper_id'];
+		return ['track', 'author_id', 'paper_id', 'search'];
 	}
 }
