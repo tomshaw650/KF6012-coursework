@@ -11,6 +11,7 @@
  * 		- PARAMS: 
  * 			- track: returns papers from a specific track
  * 			- author ID: returns all papers associated with specified author
+ * 			- paper ID: returns the paper related to the ID. for use in app
  * @param array endpointParams - creates an array of params to be passed
  * 
  * @author Tom Shaw
@@ -52,6 +53,21 @@ class Paper extends Endpoint
 			$sqlParams['author_id'] = $_GET['author_id'];
 		}
 
+		if (filter_has_var(INPUT_GET, 'paper_id')) {
+			if (!filter_var($_GET['paper_id'], FILTER_VALIDATE_INT)) {
+				http_response_code(400);
+				$output['message'] = "ID must be an integer";
+				die(json_encode($output));
+			}
+
+			if (isset($where)) {
+				$where .= " AND paper.paper_id = :paper_id";
+			} else {
+				$where = " WHERE paper.paper_id = :paper_id";
+			}
+			$sqlParams['paper_id'] = $_GET['paper_id'];
+		}
+
 		if (isset($where)) {
 			$sql .= $where;
 		}
@@ -61,6 +77,6 @@ class Paper extends Endpoint
 	}
 
 	protected function endpointParams() {
-		return ['track', 'author_id'];
+		return ['track', 'author_id', 'paper_id'];
 	}
 }

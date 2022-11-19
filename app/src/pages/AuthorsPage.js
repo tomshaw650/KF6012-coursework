@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { Outlet, useLocation } from "react-router-dom";
 
-import NavBar from "../components/navigation/NavBar";
 import Td from "../components/Td";
 import Header from "../components/Header";
-import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
@@ -16,7 +14,7 @@ export default function AuthorsPage() {
   const [loading, setLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(10);
+  const [rowsPerPage] = useState(15);
 
   useEffect(() => {
     fetch(
@@ -50,16 +48,15 @@ export default function AuthorsPage() {
   ));
 
   return (
-    <div className="h-screen w-screen">
-      <div className="flex justify-between bg-bgdark">
-        <Header />
-        <NavBar />
-        <MobileNavBar />
-      </div>
+    <div className="h-full">
+      <Header />
       <div className="flex flex-col">
         <h1 className="mt-2 flex justify-center text-3xl text-white">
           Authors
         </h1>
+        <h2 className="text-md mt-2 flex justify-center italic text-white">
+          (Click the author's ID to view all the papers they have worked on)
+        </h2>
         {loading ? (
           <p>Loading...</p>
         ) : (

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export const AuthorModal = () => {
+export const AbstractModal = () => {
   const navigate = useNavigate();
-  const { authorId } = useParams();
+  const { paperId } = useParams();
 
   const [paper, setPaper] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(
-      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?author_id=" +
-        authorId
+      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?paper_id=" +
+        paperId
     )
       .then((response) => response.json())
       .then((json) => {
@@ -21,20 +21,17 @@ export const AuthorModal = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [authorId]);
+  }, [paperId]);
 
   const paperList = paper.map((paper) => (
     <div key={paper.paper_id}>
-      <ul className="list-disc italic">
-        <li>{paper.title}</li>
-      </ul>
+      <h3 className="flex justify-center text-lg font-bold">{paper.title}</h3>
+      <p>{paper.abstract}</p>
     </div>
   ));
   return (
-    <div className="align-center absolute top-0 flex h-screen w-screen justify-center bg-modal">
-      <div className="flex h-fit w-80 flex-col rounded-xl bg-white p-5">
-        <h3 className="flex justify-center text-lg font-bold">Papers</h3>
-        <p className="flex justify-center">This author has worked on: </p>
+    <div className="align-center absolute top-0 flex min-h-full w-screen justify-center bg-modal">
+      <div className="flex h-fit w-4/5 flex-col rounded-xl bg-white p-5">
         {loading ? <p>Loading...</p> : paperList}
         <button
           className="mt-10 rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"
