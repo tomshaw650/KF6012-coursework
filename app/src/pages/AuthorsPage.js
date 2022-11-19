@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { Outlet, useLocation } from "react-router-dom";
 
-import NavBar from "../components/navigation/NavBar";
 import Td from "../components/Td";
 import Header from "../components/Header";
-import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
@@ -51,11 +49,7 @@ export default function AuthorsPage() {
 
   return (
     <div className="h-full">
-      <div className="flex justify-between bg-bgdark">
-        <Header />
-        <NavBar />
-        <MobileNavBar />
-      </div>
+      <Header />
       <div className="flex flex-col">
         <h1 className="mt-2 flex justify-center text-3xl text-white">
           Authors

@@ -23,7 +23,13 @@ export default function App() {
 
         <Route path="/papers" element={<PapersPage />}>
           <Route path="/papers/view/:paperId" element={<AbstractModal />} />
-          <Route path="/papers/:track" element={<TrackPage />} />
+        </Route>
+
+        <Route path="/papers/:track" element={<TrackPage />}>
+          <Route
+            path="/papers/:track/view/:paperId"
+            element={<AbstractModal />}
+          />
         </Route>
 
         <Route path="/authors" element={<AuthorsPage />}>

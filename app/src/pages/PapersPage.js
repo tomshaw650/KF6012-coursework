@@ -6,8 +6,6 @@ import useApiRequest from "../helpers/useApiRequest";
 
 import PaperList from "../components/PaperList";
 import Header from "../components/Header";
-import NavBar from "../components/navigation/NavBar";
-import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
@@ -18,8 +16,7 @@ export default function PapersPage() {
   const [rowsPerPage] = useState(15);
 
   const { loading, paper } = useApiRequest(
-    "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper",
-    ""
+    "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper"
   );
 
   const lastRow = currentPage * rowsPerPage;
@@ -42,11 +39,7 @@ export default function PapersPage() {
 
   return (
     <div className="h-screen">
-      <div className="flex justify-between bg-bgdark">
-        <Header />
-        <NavBar />
-        <MobileNavBar />
-      </div>
+      <Header />
       <div className="flex flex-col">
         <h1 className="mt-2 flex justify-center text-3xl text-white">
           All Papers
