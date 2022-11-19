@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Outlet, useLocation } from "react-router-dom";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { useLocation, Outlet } from "react-router-dom";
 
-import NavBar from "../components/navigation/NavBar";
+import useApiRequest from "../helpers/useApiRequest";
+
+import PaperList from "../components/PaperList";
 import Header from "../components/Header";
-import Td from "../components/Td";
+import NavBar from "../components/navigation/NavBar";
 import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
-import ConfigIcon from "../helpers/configIcon";
 
 export default function PapersPage() {
   const location = useLocation();
-  const [paper, setPaper] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(15);
 
-  useEffect(() => {
-    fetch("http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper")
-      .then((response) => response.json())
-      .then((json) => {
-        setLoading(false);
-        setPaper(json.data);
-      });
-  }, []);
+  const { loading, paper } = useApiRequest(
+    "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper",
+    ""
+  );
 
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
@@ -35,32 +28,16 @@ export default function PapersPage() {
   const nRows = Math.ceil(paper.length / rowsPerPage);
 
   const paperList = currentRows.map((paper) => (
-    <tr className="hover:bg-gray-600" key={paper.paper_id}>
-      <td className="text-center text-lg">{paper.paper_id}</td>
-      <td className="text-center text-lg">{paper.title}</td>
-      <td className="translate-x-1/2">
-        {paper.has_award === null ? (
-          <ConfigIcon>
-            <FaTimesCircle />
-          </ConfigIcon>
-        ) : (
-          <ConfigIcon>
-            <FaCheckCircle />
-          </ConfigIcon>
-        )}
-      </td>
-      <Td
-        to={`view/${paper.paper_id}`}
-        state={{ background: location }}
-        className="text-center text-lg"
-      >
-        {paper.abstract.length > 10
-          ? paper.abstract.substring(0, 10) + "..."
-          : paper.abstract}
-      </Td>
-      <td className="text-center text-lg">{paper.track_key}</td>
-      <td className="text-center text-lg">{paper.track_name}</td>
-    </tr>
+    <PaperList
+      key={paper.paper_id}
+      paper_id={paper.paper_id}
+      title={paper.title}
+      has_award={paper.has_award}
+      location={location}
+      abstract={paper.abstract}
+      track_key={paper.track_key}
+      track_name={paper.track_name}
+    />
   ));
 
   return (
