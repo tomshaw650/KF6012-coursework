@@ -1,11 +1,12 @@
 import "./index.css";
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AuthorModal } from "./components/AuthorModal";
+import { AuthorModal } from "./components/modals/AuthorModal";
+import { AbstractModal } from "./components/modals/AbstractModal";
 
 import LandingPage from "./pages/LandingPage";
-import PapersPage from "./pages/papers/PapersPage";
-import TrackPage from "./pages/papers/TrackPage";
+import PapersPage from "./pages/PapersPage";
+import TrackPage from "./pages/TrackPage";
 import AuthorsPage from "./pages/AuthorsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/papers">
           <Route index element={<PapersPage />} />
+          <Route path="/papers/view/:paperId" element={<AbstractModal />} />
           <Route path="/papers/:track" element={<TrackPage />} />
         </Route>
         <Route path="/authors" element={<AuthorsPage />}>
@@ -29,6 +31,7 @@ export default function App() {
       {background && (
         <Routes>
           <Route path="/:authorId" element={<AuthorModal />} />
+          <Route path="/view/:paperId" element={<AbstractModal />} />
         </Routes>
       )}
     </div>

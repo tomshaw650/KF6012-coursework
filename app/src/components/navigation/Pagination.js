@@ -15,7 +15,7 @@ const Pagination = ({ nRows, currentPage, setCurrentPage, props }) => {
   };
 
   return (
-    <nav className="mt-2">
+    <nav className="mt-5">
       <ul className="flex justify-center">
         <li className="p-2">
           <button

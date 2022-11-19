@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import "../../index.css";
+import "../index.css";
 
-import NavBar from "../../components/navigation/NavBar";
-import Header from "../../components/Header";
-import LandingContent from "../../components/LandingContent";
-import MobileNavBar from "../../components/navigation/MobileNavBar";
+import NavBar from "../components/navigation/NavBar";
+import Header from "../components/Header";
+import LandingContent from "../components/LandingContent";
+import MobileNavBar from "../components/navigation/MobileNavBar";
 
 export default function TrackPage() {
   const { track } = useParams();

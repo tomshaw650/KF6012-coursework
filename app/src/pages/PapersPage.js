@@ -1,51 +1,64 @@
 import React, { useEffect, useState } from "react";
+import "../index.css";
 
 import { Outlet, useLocation } from "react-router-dom";
+import { FaCheck } from "react-icons/fa";
 
 import NavBar from "../components/navigation/NavBar";
-import Td from "../components/Td";
 import Header from "../components/Header";
+import Td from "../components/Td";
 import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
+import ConfigIcon from "../config/configIcon";
 
-export default function AuthorsPage() {
+export default function PapersPage() {
   const location = useLocation();
-  const [authors, setAuthors] = useState([]);
+  const [paper, setPaper] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(15);
 
   useEffect(() => {
-    fetch(
-      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/author"
-    )
+    fetch("http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper")
       .then((response) => response.json())
       .then((json) => {
         setLoading(false);
-        setAuthors(json.data);
+        setPaper(json.data);
       });
   }, []);
 
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
-  const currentRows = authors.slice(firstRow, lastRow);
-  const nRows = Math.ceil(authors.length / rowsPerPage);
+  const currentRows = paper.slice(firstRow, lastRow);
+  const nRows = Math.ceil(paper.length / rowsPerPage);
 
-  const authorList = currentRows.map((author) => (
-    <tr className="hover:bg-gray-600" key={author.author_id}>
+  const paperList = currentRows.map((paper) => (
+    <tr className="hover:bg-gray-600" key={paper.paper_id}>
+      <td className="text-center text-lg">{paper.paper_id}</td>
+      <td className="text-center text-lg">{paper.title}</td>
+      <td className="translate-x-1/2">
+        {paper.has_award === null ? (
+          <p></p>
+        ) : (
+          <ConfigIcon>
+            <FaCheck />
+          </ConfigIcon>
+        )}
+      </td>
       <Td
-        to={`${author.author_id}`}
+        to={`view/${paper.paper_id}`}
         state={{ background: location }}
         className="text-center text-lg"
       >
-        {author.author_id}
+        {paper.abstract.length > 10
+          ? paper.abstract.substring(0, 10) + "..."
+          : paper.abstract}
       </Td>
-      <td className="text-center text-lg">{author.first_name}</td>
-      <td className="text-center text-lg">{author.middle_initial}</td>
-      <td className="text-center text-lg">{author.last_name}</td>
+      <td className="text-center text-lg">{paper.track_key}</td>
+      <td className="text-center text-lg">{paper.track_name}</td>
     </tr>
   ));
 
@@ -58,10 +71,10 @@ export default function AuthorsPage() {
       </div>
       <div className="flex flex-col">
         <h1 className="mt-2 flex justify-center text-3xl text-white">
-          Authors
+          All Papers
         </h1>
         <h2 className="text-md mt-2 flex justify-center italic text-white">
-          (Click the author's ID to view all the papers they have worked on)
+          (Click the abstract to view the full body of text)
         </h2>
         {loading ? (
           <p>Loading...</p>
@@ -69,12 +82,14 @@ export default function AuthorsPage() {
           <>
             <Table
               headers={[
-                "Author ID",
-                "First Name",
-                "Middle Initial",
-                "Last Name",
+                "Paper ID",
+                "Title",
+                "Award Status",
+                "Abstract",
+                "Track Short Name",
+                "Track Full Name",
               ]}
-              tableBody={authorList}
+              tableBody={paperList}
             />
             <Pagination
               nRows={nRows}
