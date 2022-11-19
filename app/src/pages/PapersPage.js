@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Outlet, useLocation } from "react-router-dom";
-import { FaCheck } from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 import NavBar from "../components/navigation/NavBar";
 import Header from "../components/Header";
@@ -40,10 +40,12 @@ export default function PapersPage() {
       <td className="text-center text-lg">{paper.title}</td>
       <td className="translate-x-1/2">
         {paper.has_award === null ? (
-          <p></p>
+          <ConfigIcon>
+            <FaTimesCircle />
+          </ConfigIcon>
         ) : (
           <ConfigIcon>
-            <FaCheck />
+            <FaCheckCircle />
           </ConfigIcon>
         )}
       </td>
