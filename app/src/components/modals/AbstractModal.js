@@ -30,7 +30,7 @@ export const AbstractModal = () => {
     </div>
   ));
   return (
-    <div className="align-center absolute top-0 flex h-screen w-screen justify-center bg-modal">
+    <div className="align-center absolute top-0 flex min-h-full w-screen justify-center bg-modal">
       <div className="flex h-fit w-4/5 flex-col rounded-xl bg-white p-5">
         {loading ? <p>Loading...</p> : paperList}
         <button

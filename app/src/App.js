@@ -15,7 +15,7 @@ export default function App() {
   const background = location.state && location.state.background;
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-full w-screen" id="toplevel">
       <Routes location={background || location}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/papers">

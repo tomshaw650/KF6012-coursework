@@ -50,7 +50,7 @@ export default function AuthorsPage() {
   ));
 
   return (
-    <div className="h-screen">
+    <div className="h-full">
       <div className="flex justify-between bg-bgdark">
         <Header />
         <NavBar />

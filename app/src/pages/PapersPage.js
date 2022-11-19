@@ -11,7 +11,7 @@ import MobileNavBar from "../components/navigation/MobileNavBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
-import ConfigIcon from "../config/configIcon";
+import ConfigIcon from "../helpers/configIcon";
 
 export default function PapersPage() {
   const location = useLocation();
