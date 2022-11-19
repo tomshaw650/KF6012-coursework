@@ -31,7 +31,7 @@
 /* ----- TYPOGRAPHY ----- */
 /*      Navigation Bar 
   (leveraging normal CSS here) */
-a:not(.header-link, .table-contents) {
+a:not(.title-link, .table-contents) {
   background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)),
     linear-gradient(
       to right,
