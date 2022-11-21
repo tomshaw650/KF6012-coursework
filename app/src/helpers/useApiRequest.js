@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function useApiRequest(url) {
-  const [paper, setPaper] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -11,14 +11,14 @@ export default function useApiRequest(url) {
         .then((response) => response.json())
         .then((json) => {
           setLoading(false);
-          setPaper(json.data);
+          setData(json.data);
         })
         .catch((error) => {
           console.log(error);
         });
     };
     fetchData();
-  }, [url, paper]);
+  }, [url, data]);
 
-  return { loading, paper };
+  return { loading, data };
 }

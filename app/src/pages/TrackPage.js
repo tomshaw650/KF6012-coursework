@@ -22,7 +22,7 @@ export default function TrackPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectValue, setSelectValue] = useState("all");
 
-  const { loading, paper } = useApiRequest(
+  const { loading, data } = useApiRequest(
     "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?track=" +
       track +
       "&search=" +
@@ -34,8 +34,8 @@ export default function TrackPage() {
 
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
-  const currentRows = paper.slice(firstRow, lastRow);
-  const nRows = Math.ceil(paper.filter(selectPapers).length / rowsPerPage);
+  const currentRows = data.slice(firstRow, lastRow);
+  const nRows = Math.ceil(data.filter(selectPapers).length / rowsPerPage);
 
   const paperList = currentRows
     .filter(selectPapers)
