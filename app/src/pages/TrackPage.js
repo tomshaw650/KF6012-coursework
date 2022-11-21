@@ -6,6 +6,7 @@ import useApiRequest from "../helpers/useApiRequest";
 
 import PaperList from "../components/PaperList";
 import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
@@ -16,10 +17,13 @@ export default function TrackPage() {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(15);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { loading, paper } = useApiRequest(
     "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?track=" +
-      track
+      track +
+      "&search=" +
+      searchTerm
   );
 
   const lastRow = currentPage * rowsPerPage;
@@ -58,6 +62,7 @@ export default function TrackPage() {
           <p>Loading...</p>
         ) : (
           <>
+            <SearchBar setSearchTerm={setSearchTerm} />
             <Table
               headers={[
                 "Paper ID",
