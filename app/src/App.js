@@ -1,3 +1,12 @@
+/**
+ *
+ * This is the main component of the application
+ * Used to render the application and set the routing
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import "./index.css";
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -11,20 +20,25 @@ import AuthorsPage from "./pages/AuthorsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
+  // Get the current location from react-router-dom
   const location = useLocation();
+
+  // Set the background based on the current location to be used for modals
   const background = location.state && location.state.background;
 
-  //have the abstract model open in front of the previous page
-
   return (
-    <div className="h-full w-screen" id="toplevel">
+    <div className="h-full w-screen">
+      {/* Render the routes, setting the location */}
       <Routes location={background || location}>
+        {/* Base path routes to Landing Page */}
         <Route path="/" element={<LandingPage />} />
 
+        {/* Papers path routes to the Papers page, creating a modal on selecting an abstract */}
         <Route path="/papers" element={<PapersPage />}>
           <Route path="/papers/view/:paperId" element={<AbstractModal />} />
         </Route>
 
+        {/* Tracks path routes to the Tracks page, set by the useParam. Creates a modal on selecting an abstract */}
         <Route path="/papers/:track" element={<TrackPage />}>
           <Route
             path="/papers/:track/view/:paperId"
@@ -32,12 +46,16 @@ export default function App() {
           />
         </Route>
 
+        {/* Authors path routes to the Authors page, creating a modal on selecting an author ID */}
         <Route path="/authors" element={<AuthorsPage />}>
           <Route path="/authors/:authorId" element={<AuthorModal />} />
         </Route>
 
+        {/* 404 page */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      {/* Render the modal if the background is set, this allows the modal to appear on top of the previous page */}
       {background && <Route path="view/:paperId" element={<AbstractModal />} />}
       {background && (
         <Route path="author/:authorId" element={<AuthorModal />} />

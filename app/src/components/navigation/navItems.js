@@ -1,3 +1,11 @@
+/**
+ *
+ * Exportable array of objects containing the navigation items and their links
+ * This allows for easy modification of the navigation items and their links
+ * without having to change the NavBar or MobileNavBar component
+ *
+ */
+
 export const navItems = [
   { name: "Home", link: "/" },
   {

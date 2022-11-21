@@ -1,3 +1,12 @@
+/**
+ *
+ * Title component creates a header to serve as the branding for the site
+ * Uses react-router Link to serve as a further link to the homepage
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React from "react";
 import { Link } from "react-router-dom";
 

@@ -1,3 +1,16 @@
+/**
+ *
+ * PapersPage component, used as an element for routing
+ * This page displays a table with data fetched from the API (with useApiRequest hook)
+ * The user can search for a specific paper by title or abstract through API fetching
+ * There is a dropdown to filter papers by award status, achieved through filtering the data
+ * The table is paginated to only show 15 results at a time
+ * The user can click on an abstract of a paper to view the full abstract
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React, { useState } from "react";
 
 import { useLocation, Outlet } from "react-router-dom";
@@ -14,25 +27,32 @@ import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
 
 export default function PapersPage() {
+  // useLocation hook to allow for modal to open on top of this page
   const location = useLocation();
+
+  // state variables to store the search query, the current page for pagination and the dropdown value
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(15);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectValue, setSelectValue] = useState("all");
 
+  // custom hook to fetch data from the API, using searchTerm state variable as a param
   const { loading, data } = useApiRequest(
     "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?search=" +
       searchTerm
   );
 
+  // function to filter the data based on the dropdown value
   const selectPapers = (value) =>
     value.has_award === selectValue || selectValue === "all";
 
+  // calculations to allow for pagination
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
   const currentRows = data.slice(firstRow, lastRow);
   const nRows = Math.ceil(data.filter(selectPapers).length / rowsPerPage);
 
+  // paperList component is passed the data filtered by selectPapers function and outputs a valid tablebody
   const paperList = currentRows
     .filter(selectPapers)
     .map((paper) => (
@@ -48,6 +68,7 @@ export default function PapersPage() {
       />
     ));
 
+  // function to handle the DropDown component onChange event. if "false" exchange for null to match API
   const optionsHandler = (event) => {
     if (event === "false") {
       setSelectValue(null);
@@ -58,18 +79,24 @@ export default function PapersPage() {
 
   return (
     <div className="h-screen">
+      {/* Header component displays main title and navigation */}
       <Header />
       <div className="flex flex-col">
+        {/* TitleDesc component displays title and description */}
         <TitleDesc
           title="All Papers"
           description="(Click the abstract to view the full body of text)"
         />
+        {/* if loading is true, display loading message */}
         {loading ? (
           <p>Loading...</p>
         ) : (
           <>
+            {/* DropDown component takes a handler and select value prop to display the dropdown */}
             <DropDown handler={optionsHandler} selectValue={selectValue} />
+            {/* SearchBar component takes a setSearchTerm prop which is passed a state variable */}
             <SearchBar setSearchTerm={setSearchTerm} />
+            {/* Table component takes a tableBody prop which is passed the paperList component */}
             <Table
               headers={[
                 "Paper ID",
@@ -81,6 +108,7 @@ export default function PapersPage() {
               ]}
               tableBody={paperList}
             />
+            {/* Pagination component applies pagination to the results */}
             <Pagination
               nRows={nRows}
               currentPage={currentPage}
@@ -89,7 +117,9 @@ export default function PapersPage() {
           </>
         )}
       </div>
+      {/* Footer component displays footer */}
       <Footer />
+      {/* Outlet component allows for rendering the modal */}
       <Outlet />
     </div>
   );

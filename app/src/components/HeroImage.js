@@ -1,3 +1,13 @@
+/**
+ *
+ * Component for the Hero Image
+ * Set as a js function rather than in the public folder for performance
+ * Resized using /helpers/resizeImage.js
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React from "react";
 
 import hero_img from "../images/desktop-hero_img.jpg";

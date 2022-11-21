@@ -11,7 +11,8 @@
 }
 
 /* ----- BACKGROUND ----- */
-/* Background Colour */
+/* Background Colour 
+  (leveraging normal CSS) */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -30,7 +31,7 @@
 
 /* ----- TYPOGRAPHY ----- */
 /*      Navigation Bar 
-  (leveraging normal CSS here) */
+  (leveraging normal CSS) */
 a:not(.title-link, .table-contents) {
   background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)),
     linear-gradient(

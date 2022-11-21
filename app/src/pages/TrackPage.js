@@ -1,3 +1,17 @@
+/**
+ *
+ * TrackPage component, used as an element for routing
+ * This page displays a table with data fetched from the API (with useApiRequest hook)
+ * The table contains all papers related to the relevant track
+ * The user can search for a specific paper by title or abstract through API fetching
+ * There is a dropdown to filter papers by award status, achieved through filtering the data
+ * The table is paginated to only show 15 results at a time
+ * The user can click on an abstract of a paper to view the full abstract
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React, { useState } from "react";
 
 import { useParams, useLocation, Outlet } from "react-router-dom";
@@ -14,14 +28,18 @@ import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
 
 export default function TrackPage() {
+  // useParams hook from react-router to get the track from the URL
   const { track } = useParams();
-
+  // useLocation hook to allow for modal to open on top of this page
   const location = useLocation();
+
+  // state variables to store the search query, the current page for pagination and the dropdown value
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(15);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectValue, setSelectValue] = useState("all");
 
+  // custom hook to fetch data from the API, using useParams track and searchTerm state variable as a param
   const { loading, data } = useApiRequest(
     "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?track=" +
       track +
@@ -29,14 +47,17 @@ export default function TrackPage() {
       searchTerm
   );
 
+  // function to filter the data based on the dropdown value
   const selectPapers = (value) =>
     value.has_award === selectValue || selectValue === "all";
 
+  // calculations to allow for pagination
   const lastRow = currentPage * rowsPerPage;
   const firstRow = lastRow - rowsPerPage;
   const currentRows = data.slice(firstRow, lastRow);
   const nRows = Math.ceil(data.filter(selectPapers).length / rowsPerPage);
 
+  // paperList component is passed the data filtered by selectPapers function and outputs a valid tablebody
   const paperList = currentRows
     .filter(selectPapers)
     .map((paper) => (
@@ -52,34 +73,40 @@ export default function TrackPage() {
       />
     ));
 
+  // function to handle the DropDown component onChange event. if "false" exchange for null to match API
   const optionsHandler = (event) => {
     if (event === "false") {
       setSelectValue(null);
     } else {
       setSelectValue(event);
-      console.log(currentRows);
-      console.log(currentRows.filter(selectPapers));
     }
   };
 
+  // function takes the track and returns capitalised track name for the title
   function capitaliseTrack(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
     <div className="h-screen">
+      {/* Header component displays title and navigation */}
       <Header />
       <div className="flex flex-col">
+        {/* TitleDesc component displays title with capitalised track and description */}
         <TitleDesc
           title={`All ` + capitaliseTrack(track) + ` Papers`}
           description="(Click the abstract to view the full body of text)"
         />
+        {/* if loading is true, display loading message, else display the table */}
         {loading ? (
           <p>Loading...</p>
         ) : (
           <>
+            {/* Dropdown takes handler and select value as props, and is passed a function and state variable*/}
             <DropDown handler={optionsHandler} selectValue={selectValue} />
+            {/* SearchBar takes setSearchTerm as a prop, and is passed a state variable */}
             <SearchBar setSearchTerm={setSearchTerm} />
+            {/* Table takes paperList as a prop, and is passed a valid tablebody */}
             <Table
               headers={[
                 "Paper ID",
@@ -91,6 +118,7 @@ export default function TrackPage() {
               ]}
               tableBody={paperList}
             />
+            {/* Pagination component applies pagination to the table */}
             <Pagination
               nRows={nRows}
               currentPage={currentPage}
@@ -99,7 +127,9 @@ export default function TrackPage() {
           </>
         )}
       </div>
+      {/* Footer component displays footer */}
       <Footer />
+      {/* Outlet component renders the modal */}
       <Outlet />
     </div>
   );
