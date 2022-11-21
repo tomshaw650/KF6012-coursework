@@ -40,6 +40,17 @@ class Author extends Endpoint
 			$sqlParams['paper_id'] = $_GET['paper_id'];
 		}
 
+		if (filter_has_var(INPUT_GET, 'search')) {
+			$search = htmlspecialchars($_GET['search']);
+
+			if (isset($where)) {
+				$where .= " AND (author.first_name LIKE :search OR author.last_name LIKE :search)";
+			} else {
+				$where = " WHERE (author.first_name LIKE :search OR author.last_name LIKE :search)";
+			}
+			$sqlParams['search'] = '%' . $search . '%';
+		}
+
 		if (isset($where)) {
 			$sql .= $where;
 		}
@@ -49,6 +60,6 @@ class Author extends Endpoint
 	}
 
 	protected function endpointParams() {
-		return ['paper_id'];
+		return ['paper_id', 'search'];
 	}
 }
