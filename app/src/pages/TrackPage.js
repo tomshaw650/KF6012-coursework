@@ -6,6 +6,7 @@ import useApiRequest from "../helpers/useApiRequest";
 
 import PaperList from "../components/PaperList";
 import Header from "../components/Header";
+import TitleDesc from "../components/TitleDesc";
 import SearchBar from "../components/SearchBar";
 import DropDown from "../components/DropDown";
 import Table from "../components/Table";
@@ -69,12 +70,10 @@ export default function TrackPage() {
     <div className="h-screen">
       <Header />
       <div className="flex flex-col">
-        <h1 className="mt-2 flex justify-center text-3xl text-white">
-          All {capitaliseTrack(track)} Papers
-        </h1>
-        <h2 className="text-md mt-2 flex justify-center italic text-white">
-          (Click the abstract to view the full body of text)
-        </h2>
+        <TitleDesc
+          title={`All ` + capitaliseTrack(track) + ` Papers`}
+          description="(Click the abstract to view the full body of text)"
+        />
         {loading ? (
           <p>Loading...</p>
         ) : (
