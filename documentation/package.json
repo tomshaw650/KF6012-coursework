@@ -1,7 +1,7 @@
 {
   "name": "documentation",
   "homepage": "http://unn_w19025481.newnumyspace.co.uk/kf6012/coursework/documentation/",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
