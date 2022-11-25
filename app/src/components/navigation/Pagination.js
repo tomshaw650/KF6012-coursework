@@ -34,6 +34,7 @@ const Pagination = ({ nRows, currentPage, setCurrentPage }) => {
         <li className="p-2">
           {/* Previous button */}
           <button
+            //hover darkens the button's colour
             className="rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"
             onClick={prevPage}
           >
@@ -47,7 +48,7 @@ const Pagination = ({ nRows, currentPage, setCurrentPage }) => {
         <li className="p-2">
           {/* Next button */}
           <button
-            //hover increases size of button animated
+            //hover darkens the button's colour
             className="hover:bg- rounded bg-blue py-2 px-4 font-bold text-white hover:bg-sky-900"
             onClick={nextPage}
           >
