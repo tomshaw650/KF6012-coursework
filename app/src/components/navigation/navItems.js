@@ -23,6 +23,7 @@ export const navItems = [
   { name: "Authors", link: "/authors" },
 ];
 
+// the below line is for use in ignoring warning during development
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   navItems,
