@@ -14,7 +14,7 @@
 
 import React, { useState } from "react";
 
-import { useParams, useLocation, Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 
 import useApiRequest from "../helpers/useApiRequest";
 
@@ -27,9 +27,9 @@ import Table from "../components/Table";
 import Pagination from "../components/navigation/Pagination";
 import Footer from "../components/Footer";
 
-export default function TrackPage() {
+export default function TrackPage(props) {
   // useParams hook from react-router to get the track from the URL
-  const { track } = useParams();
+  const track = props.track;
   // useLocation hook to allow for modal to open on top of this page
   const location = useLocation();
 

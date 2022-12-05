@@ -38,12 +38,34 @@ export default function App() {
           <Route path="/papers/view/:paperId" element={<AbstractModal />} />
         </Route>
 
-        {/* Tracks path routes to the Tracks page, set by the useParam. Creates a modal on selecting an abstract */}
-        <Route path="/papers/:track" element={<TrackPage />}>
-          <Route
-            path="/papers/:track/view/:paperId"
-            element={<AbstractModal />}
-          />
+        {/* Tracks path routes to the Tracks page, set with a prpo. Creates a modal on selecting an abstract */}
+        <Route
+          path="/papers/interactivity"
+          element={<TrackPage track="interactivity" />}
+        >
+          <Route path="view/:paperId" element={<AbstractModal />} />
+        </Route>
+
+        <Route
+          path="/papers/fullpapers"
+          element={<TrackPage track="fullpapers" />}
+        >
+          <Route path="view/:paperId" element={<AbstractModal />} />
+        </Route>
+        <Route path="/papers/wip" element={<TrackPage track="wip" />}>
+          <Route path="view/:paperId" element={<AbstractModal />} />
+        </Route>
+        <Route
+          path="/papers/competition"
+          element={<TrackPage track="competition" />}
+        >
+          <Route path="view/:paperId" element={<AbstractModal />} />
+        </Route>
+        <Route path="/papers/doctoral" element={<TrackPage track="doctoral" />}>
+          <Route path="view/:paperId" element={<AbstractModal />} />
+        </Route>
+        <Route path="/papers/rapid" element={<TrackPage track="rapid" />}>
+          <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
 
         {/* Authors path routes to the Authors page, creating a modal on selecting an author ID */}
