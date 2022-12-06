@@ -1,19 +1,17 @@
 /**
  *
- * AbstractModal is a modal component that is used to display a modal
- * The modal displays abstract based on the paper ID
- * This leverages react-router to get the author ID from the URL, and to display over the current page
- * This uses the useApiRequest hook to fetch the abstract
+ *
  *
  * @author Tom Shaw
  *
  */
 
 import { useNavigate, useParams } from "react-router-dom";
+import UpdateAward from "../UpdateAward";
 
 import useApiRequest from "../../helpers/useApiRequest";
 
-export const AbstractModal = () => {
+export const AdminModal = () => {
   // useNavigate hook from react-router used for button to close modal and return to previous page
   const navigate = useNavigate();
   // useParams hook from react-router used to get the paper ID from the URL
@@ -26,18 +24,18 @@ export const AbstractModal = () => {
   );
 
   // abstractList uses the data from the API request to display the abstract
-  const abstractList = data.map((paper) => (
+  const adminList = data.map((paper) => (
     <div key={paper.paper_id}>
       <h3 className="flex justify-center text-lg font-bold">{paper.title}</h3>
-      <p>{paper.abstract}</p>
+      <UpdateAward paperId={paperId} award={paper.award} />
     </div>
   ));
 
   return (
     <div className="align-center absolute top-0 flex min-h-full w-screen justify-center bg-modal">
-      <div className="flex h-fit w-4/5 flex-col items-start rounded-xl bg-white p-5">
+      <div className="flex h-fit flex-col items-start rounded-xl bg-white p-5">
         {/* if loading is true, display loading message */}
-        {loading ? <p>Loading...</p> : abstractList}
+        {loading ? <p>Loading...</p> : adminList}
         {/* button to close modal and return to previous page */}
         <button
           className="mt-10 self-center rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"

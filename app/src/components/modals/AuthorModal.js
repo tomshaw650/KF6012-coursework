@@ -35,14 +35,14 @@ export const AuthorModal = () => {
 
   return (
     <div className="align-center absolute top-0 flex h-full w-screen justify-center bg-modal">
-      <div className="flex h-fit w-80 flex-col rounded-xl bg-white p-5">
+      <div className="flex h-fit w-80 flex-col items-start rounded-xl bg-white p-5">
         <h3 className="flex justify-center text-lg font-bold">Papers</h3>
         <p className="flex justify-center">This author has worked on: </p>
         {/* if loading is true, display loading message */}
         {loading ? <p>Loading...</p> : paperList}
         {/* button to close modal and return to previous page */}
         <button
-          className="mt-10 rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"
+          className="mt-10 self-center rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"
           onClick={() => navigate(-1)}
         >
           Close

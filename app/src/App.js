@@ -8,23 +8,32 @@
  */
 
 import "./index.css";
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthorModal } from "./components/modals/AuthorModal";
 import { AbstractModal } from "./components/modals/AbstractModal";
+import { AdminModal } from "./components/modals/AdminModal";
 
 import LandingPage from "./pages/LandingPage";
 import PapersPage from "./pages/PapersPage";
 import TrackPage from "./pages/TrackPage";
 import AuthorsPage from "./pages/AuthorsPage";
+import AdminPage from "./pages/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
+  // create authentication state variable
+  const [authenticated, setAuthenticated] = useState(false);
+
   // Get the current location from react-router-dom
   const location = useLocation();
 
   // Set the background based on the current location to be used for modals
   const background = location.state && location.state.background;
+
+  const handleAuthenticated = (isAuthenticated) => {
+    setAuthenticated(isAuthenticated);
+  };
 
   return (
     <div className="h-full w-screen">
@@ -73,6 +82,19 @@ export default function App() {
           <Route path="/authors/:authorId" element={<AuthorModal />} />
         </Route>
 
+        {/* Admin path routes to the Admin page */}
+        <Route
+          path="/admin"
+          element={
+            <AdminPage
+              authenticated={authenticated}
+              handleAuthenticated={handleAuthenticated}
+            />
+          }
+        >
+          <Route path="/admin/edit/:paperId" element={<AdminModal />} />
+        </Route>
+
         {/* 404 page */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
@@ -81,6 +103,9 @@ export default function App() {
       {background && <Route path="view/:paperId" element={<AbstractModal />} />}
       {background && (
         <Route path="author/:authorId" element={<AuthorModal />} />
+      )}
+      {background && (
+        <Route path="admin/edit/:paperId" element={<AdminModal />} />
       )}
     </div>
   );

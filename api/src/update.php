@@ -103,9 +103,17 @@ class Update extends Endpoint
         // set the SQL query to update the award status of a paper
         $sql = "UPDATE paper SET award = :award WHERE paper_id = :paper_id";
 
+        // Check the value of the "has_award" field
+        if ($_POST['has_award'] === "true") {
+            // If it is "true", set the "award" parameter to true
+            $this->setSQLParams(['award' => "true", 'paper_id' => $_POST['paper_id']]);
+        } else {
+            // If it is not "true", set the "award" parameter to null
+            $this->setSQLParams(['award' => null, 'paper_id' => $_POST['paper_id']]);
+        }
+
         // set the sql and parameters
         $this->setSQL($sql);
-        $this->setSQLParams(['award' => $_POST['has_award'], 'paper_id' => $_POST['paper_id']]);
     }
 
 }

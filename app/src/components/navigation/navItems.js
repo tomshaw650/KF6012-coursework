@@ -21,6 +21,7 @@ export const navItems = [
     ],
   },
   { name: "Authors", link: "/authors" },
+  { name: "Admin", link: "/admin" },
 ];
 
 // the below line is for use in ignoring warning during development
