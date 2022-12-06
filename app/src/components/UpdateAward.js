@@ -32,7 +32,7 @@ export default function UpdateAward(props) {
     <div className="flex justify-center">
       <select
         className="mt-2 flex h-10 w-1/2 justify-center rounded-lg border-2 border-gray-300 px-5 text-center text-sm"
-        value={props.award}
+        defaultValue={props.award ? "true" : ""}
         onChange={handleSelect}
       >
         <option value="true">Award</option>

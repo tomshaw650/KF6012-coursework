@@ -27,7 +27,7 @@ export const AdminModal = () => {
   const adminList = data.map((paper) => (
     <div key={paper.paper_id}>
       <h3 className="flex justify-center text-lg font-bold">{paper.title}</h3>
-      <UpdateAward paperId={paperId} award={paper.award} />
+      <UpdateAward paperId={paperId} award={paper.has_award} />
     </div>
   ));
 
