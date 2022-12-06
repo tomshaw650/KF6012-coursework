@@ -8,12 +8,13 @@ sidebar_position: 6
 
 The `paper.php` file is the class used for the paper endpoint of the API. It is located in the `src` directory of the API.
 
-The `paper.php` file contains the `Paper` class, and extends the [`Endpoint`](/v1/API/Endpoints/endpoint-php). The `Paper` class is used to return all papers from the database.
+The `paper.php` file contains the `Paper` class, and extends the [`Endpoint`](/v1/API/Endpoints/endpoint). The `Paper` class is used to return all papers from the database.
 
 ## Methods
 
 The `Paper` class contains the following methods:
-- `initialiseSQL()` - The main function for the `Paper` class. Inherited from the [`Endpoint`](/v1/API/Endpoints/endpoint-php) class to execute an SQL query.
+
+- `initialiseSQL()` - The main function for the `Paper` class. Inherited from the [`Endpoint`](/v1/API/Endpoints/endpoint) class to execute an SQL query.
   - `$sql` is set to the SQL query to get all papers from the database.
   - `setSQL()` is called to set the SQL query.
 - `endpointParams()` is set to an array of the parameters that can be used in the endpoint - 'track', and 'author_id'.
@@ -21,6 +22,7 @@ The `Paper` class contains the following methods:
 ## Parameters
 
 The `Paper` class contains the following parameters:
+
 - `?track` - The track of the paper. This can be `Interactivity`, `wip`, `fullpapers`, `competition`, `doctoral`, `rapid`. This will return all papers in the specified track.
   - [Link to Paper endpoint with the ?track parameter](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?track=wip)
 - `?author_id` - The ID of the author of the paper. This will return all papers by the author.

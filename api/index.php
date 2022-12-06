@@ -3,6 +3,8 @@
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 
+define('SECRET', "nO+G>:bn?&pM+Z/xl1|%a+sd~O}9Cs");
+
 // include and register the autoloader
 include 'config/autoloader.php';
 spl_autoload_register('autoloader');
@@ -23,6 +25,9 @@ try {
             http_response_code(200);
             break;
         case '/auth':
+        case '/auth/':
+        case '/authenticate':
+        case '/authenticate/':
             $endpoint = new Authenticate();
             http_response_code(200);
             break;
@@ -38,6 +43,11 @@ try {
         case '/authors':
         case '/authors/':
             $endpoint = new Author();
+            http_response_code(200);
+            break;
+        case '/update':
+        case '/update/':
+            $endpoint = new Update();
             http_response_code(200);
             break;
         default:
