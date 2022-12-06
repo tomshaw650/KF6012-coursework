@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import useApiRequest from "../helpers/useApiRequest";
+import loadingGif from "../images/loading.gif";
 
 import AuthorList from "../components/AuthorList";
 import Header from "../components/Header";
@@ -69,12 +70,19 @@ export default function AuthorsPage() {
         />
         {/* If the loading state is true, display a loading message */}
         {loading ? (
-          <p>Loading...</p>
+          <>
+            <img
+              src={loadingGif}
+              alt="loading..."
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-4xl text-white"
+            />
+            <span className="sr-only">Loading data...</span>
+          </>
         ) : (
           <>
             {/* SearchBar component allows the user to search for a specific author */}
             <SearchBar setSearchTerm={setSearchTerm} />
-            {/* Table component displays the table header and the table body, set by authorList */}
+
             <Table
               headers={[
                 "Author ID",
@@ -84,7 +92,6 @@ export default function AuthorsPage() {
               ]}
               tableBody={authorList}
             />
-            {/* Pagination component allows the user to navigate through the pages of results */}
             <Pagination
               nRows={nRows}
               currentPage={currentPage}
@@ -93,7 +100,6 @@ export default function AuthorsPage() {
           </>
         )}
       </div>
-      {/* Footer component displays the footer */}
       <Footer />
       {/* Outlet component allows for the modal to be displayed on top of this page */}
       <Outlet />

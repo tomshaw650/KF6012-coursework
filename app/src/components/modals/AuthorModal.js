@@ -11,6 +11,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import useApiRequest from "../../helpers/useApiRequest";
+import loadingGif from "../../images/loading.gif";
 
 export const AuthorModal = () => {
   // useNavigate hook from react-router used for button to close modal and return to previous page
@@ -39,7 +40,18 @@ export const AuthorModal = () => {
         <h3 className="flex justify-center text-lg font-bold">Papers</h3>
         <p className="flex justify-center">This author has worked on: </p>
         {/* if loading is true, display loading message */}
-        {loading ? <p>Loading...</p> : paperList}
+        {loading ? (
+          <>
+            <img
+              src={loadingGif}
+              alt="loading..."
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-4xl text-white"
+            />
+            <span className="sr-only">Loading data...</span>
+          </>
+        ) : (
+          paperList
+        )}
         {/* button to close modal and return to previous page */}
         <button
           className="mt-10 self-center rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"

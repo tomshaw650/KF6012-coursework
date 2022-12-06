@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 
 import useApiRequest from "../helpers/useApiRequest";
+import loadingGif from "../images/loading.gif";
 
 import PaperList from "../components/PaperList";
 import Header from "../components/Header";
@@ -89,7 +90,14 @@ export default function PapersPage() {
         />
         {/* if loading is true, display loading message */}
         {loading ? (
-          <p>Loading...</p>
+          <>
+            <img
+              src={loadingGif}
+              alt="loading..."
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-4xl text-white"
+            />
+            <span className="sr-only">Loading data...</span>
+          </>
         ) : (
           <>
             {/* DropDown component takes a handler and select value prop to display the dropdown */}

@@ -12,6 +12,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import useApiRequest from "../../helpers/useApiRequest";
+import loadingGif from "../../images/loading.gif";
 
 export const AbstractModal = () => {
   // useNavigate hook from react-router used for button to close modal and return to previous page
@@ -37,7 +38,18 @@ export const AbstractModal = () => {
     <div className="align-center absolute top-0 flex min-h-full w-screen justify-center bg-modal">
       <div className="flex h-fit w-4/5 flex-col items-start rounded-xl bg-white p-5">
         {/* if loading is true, display loading message */}
-        {loading ? <p>Loading...</p> : abstractList}
+        {loading ? (
+          <>
+            <img
+              src={loadingGif}
+              alt="loading..."
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-4xl text-white"
+            />
+            <span className="sr-only">Loading data...</span>
+          </>
+        ) : (
+          abstractList
+        )}
         {/* button to close modal and return to previous page */}
         <button
           className="mt-10 self-center rounded bg-orange py-2 px-4 font-bold text-white hover:bg-amber-900"

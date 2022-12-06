@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 export default function useApiRequest(url) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = () => {
