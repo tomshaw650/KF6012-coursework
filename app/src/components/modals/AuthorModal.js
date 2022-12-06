@@ -16,6 +16,7 @@ import loadingGif from "../../images/loading.gif";
 export const AuthorModal = () => {
   // useNavigate hook from react-router used for button to close modal and return to previous page
   const navigate = useNavigate();
+
   // useParams hook from react-router used to get the author ID from the URL
   const { authorId } = useParams();
 

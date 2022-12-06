@@ -13,11 +13,9 @@
 export default function ContentInfo(props) {
   return (
     <div className="m-10 flex max-w-xl flex-col md:m-20">
-      {/* Set the title of the landing content */}
       <h2 className="text-3xl text-white md:mt-20 md:text-5xl">
         {props.title}
       </h2>
-      {/* Set the description of the landing content */}
       <p className="text-md font-normal text-white md:text-xl">{props.body}</p>
       {/* If an error is set, create a button that links to previous page */}
       {props.error ? (

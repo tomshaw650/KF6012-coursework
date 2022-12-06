@@ -55,24 +55,33 @@ export default function App() {
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
 
+        {/* Full Papers track route */}
         <Route
           path="/papers/fullpapers"
           element={<TrackPage track="fullpapers" />}
         >
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
+
+        {/* WIP track route */}
         <Route path="/papers/wip" element={<TrackPage track="wip" />}>
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
+
+        {/* Competition track route */}
         <Route
           path="/papers/competition"
           element={<TrackPage track="competition" />}
         >
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
+
+        {/* Doctoral track route */}
         <Route path="/papers/doctoral" element={<TrackPage track="doctoral" />}>
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
+
+        {/* Rapid track route */}
         <Route path="/papers/rapid" element={<TrackPage track="rapid" />}>
           <Route path="view/:paperId" element={<AbstractModal />} />
         </Route>
@@ -82,7 +91,7 @@ export default function App() {
           <Route path="/authors/:authorId" element={<AuthorModal />} />
         </Route>
 
-        {/* Admin path routes to the Admin page */}
+        {/* Admin path passes in authentication details */}
         <Route
           path="/admin"
           element={

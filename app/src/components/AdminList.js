@@ -1,6 +1,6 @@
 /**
  *
- * PaperList component to pass fetched data into for table display
+ * AdminList component to pass fetched data into for table display
  * Uses the Td component to allow routing within a table item
  * Leverages react-icon for displaying award status
  *
@@ -23,12 +23,12 @@ export default function AdminList(props) {
     <tr className="hover:bg-gray-600">
       <td className="text-center text-lg">{props.paper_id}</td>
       <td className="text-center text-lg">{props.title}</td>
-      {/* if the paper has an award, display a checkmark, otherwise display a cross */}
       <Td
         to={`edit/${props.paper_id}`}
         state={{ background: props.location }}
         className="translate-x-1/2"
       >
+        {/* if the paper has an award, display a checkmark, otherwise display a cross */}
         {props.has_award === null ? (
           <ConfigIcon>
             <FaTimesCircle />

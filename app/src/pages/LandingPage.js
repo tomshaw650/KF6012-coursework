@@ -19,17 +19,14 @@ export default function LandingPage() {
       {/* Header component displays the main title and navigation */}
       <Header />
       <div className="flex flex-col justify-evenly md:flex-row">
-        {/* ContentInfo component displays some info and about the site */}
         <ContentInfo
           title="Discover the Conference"
           body="Welcome to the main conference website. Here you can browse all related
       info, including all the papers and authors at CHI Play. Use the menu at
       the top to navigate."
         />
-        {/* HeroImage component displays a hero image for the site */}
         <HeroImage />
       </div>
-      {/* Footer component displays the footer */}
       <Footer />
     </div>
   );

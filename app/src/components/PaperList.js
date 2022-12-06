@@ -26,8 +26,8 @@ export default function PaperList(props) {
     <tr className="hover:bg-gray-600">
       <td className="text-center text-lg">{props.paper_id}</td>
       <td className="text-center text-lg">{props.title}</td>
-      {/* if the paper has an award, display a checkmark, otherwise display a cross */}
       <td className="translate-x-1/2">
+        {/* if the paper has an award, display a checkmark, otherwise display a cross */}
         {props.has_award === null ? (
           <ConfigIcon>
             <FaTimesCircle />

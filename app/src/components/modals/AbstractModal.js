@@ -17,6 +17,7 @@ import loadingGif from "../../images/loading.gif";
 export const AbstractModal = () => {
   // useNavigate hook from react-router used for button to close modal and return to previous page
   const navigate = useNavigate();
+
   // useParams hook from react-router used to get the paper ID from the URL
   const { paperId } = useParams();
 

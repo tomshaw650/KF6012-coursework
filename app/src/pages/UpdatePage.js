@@ -1,3 +1,15 @@
+/**
+ *
+ * UpdatePage is a page component only rendered when the user is authenticated
+ * The user can search for a paper by title, filter by award status and update the award status of a paper
+ * The table is paginated to only show 15 results at a time, and shows ID, title and award status only
+ *
+ *
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React, { useState } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 
@@ -90,7 +102,6 @@ export default function UpdatePage(props) {
             <DropDown handler={optionsHandler} selectValue={selectValue} />
             {/* SearchBar component takes a setSearchTerm prop which is passed a state variable */}
             <SearchBar setSearchTerm={setSearchTerm} />
-            {/* Table component takes a tableBody prop which is passed the paperList component */}
             <Table
               headers={["Paper ID", "Title", "Award Status"]}
               tableBody={adminList}
@@ -103,7 +114,6 @@ export default function UpdatePage(props) {
             />
           </>
         )}
-        {/* Footer component displays footer */}
       </div>
       <Footer />
       <Outlet />

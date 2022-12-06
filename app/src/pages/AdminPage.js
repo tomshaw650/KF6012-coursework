@@ -1,3 +1,18 @@
+/**
+ *
+ * AdminPage renders the login modal
+ * Username and Password are encoded and sent as basic auth
+ * If the login is successful, the token is stored in local storage and the user is authenticated
+ *
+ * If the user is authenticated, they are shown the UpdatePage
+ *
+ * @params handleAuthenticated - function to set authenticated to true
+ * @params authenticated - boolean to check if the user is authenticated
+ *
+ * @author Tom Shaw
+ *
+ */
+
 import React, { useState, useEffect } from "react";
 
 import UpdatePage from "./UpdatePage";
@@ -11,19 +26,18 @@ export default function AdminPage(props) {
   // used to navigate user back if they close the modal
   const navigate = useNavigate();
 
-  // state variables for username and password
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   // state variable for whether the password is visible or not
   const [passwordShown, setPasswordShown] = useState(false);
 
-  // handle username input
+  // set username as the value of the username input
   const handleUsername = (event) => {
     setUsername(event.target.value);
   };
 
-  // handle password input
+  // set password as the value of the password input
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
@@ -43,15 +57,19 @@ export default function AdminPage(props) {
   const handleLogin = (event) => {
     event.preventDefault();
 
+    // this means that if the user signs out, the password does not remain visible
     setPasswordShown(false);
 
+    // encode the username and password using Buffer library
     const encodedString = Buffer.from(username + ":" + password).toString(
       "base64"
     );
 
+    // send a POST request to the API with the encoded string as the authorisation header
     fetch(
       "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/auth",
       {
+        // method is POST, authorisation is a basic token
         method: "POST",
         headers: new Headers({ Authorization: "Basic " + encodedString }),
       }
@@ -64,7 +82,6 @@ export default function AdminPage(props) {
         if (json.message === "signed in!") {
           localStorage.setItem("token", json.data.token);
           props.handleAuthenticated(true);
-          console.log(json.data.token);
         }
       })
       .catch((e) => {
@@ -72,6 +89,7 @@ export default function AdminPage(props) {
       });
   };
 
+  // if the user is already authenticated, set authenticated to true
   useEffect(() => {
     if (localStorage.getItem("token")) {
       props.handleAuthenticated(true);

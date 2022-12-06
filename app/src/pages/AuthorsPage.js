@@ -63,7 +63,6 @@ export default function AuthorsPage() {
       {/* Header component displays main title and navigation */}
       <Header />
       <div className="flex flex-col">
-        {/* TitleDesc component displays individual page title and instructions for use */}
         <TitleDesc
           title="Authors"
           description="(Click the author's ID to view all the papers they have worked on)"

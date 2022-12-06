@@ -90,10 +90,8 @@ export default function TrackPage(props) {
 
   return (
     <div className="h-screen">
-      {/* Header component displays title and navigation */}
       <Header />
       <div className="flex flex-col">
-        {/* TitleDesc component displays title with capitalised track and description */}
         <TitleDesc
           title={`All ` + capitaliseTrack(track) + ` Papers`}
           description="(Click the abstract to view the full body of text)"
@@ -114,7 +112,6 @@ export default function TrackPage(props) {
             <DropDown handler={optionsHandler} selectValue={selectValue} />
             {/* SearchBar takes setSearchTerm as a prop, and is passed a state variable */}
             <SearchBar setSearchTerm={setSearchTerm} />
-            {/* Table takes paperList as a prop, and is passed a valid tablebody */}
             <Table
               headers={[
                 "Paper ID",
