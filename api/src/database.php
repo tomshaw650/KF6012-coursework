@@ -22,6 +22,7 @@ class Database
         $this->setDbConnection($dbName);
     }
 
+    // set up the database connection
     private function setDbConnection($dbName)
     {
         try {
@@ -33,6 +34,7 @@ class Database
         }
     }
 
+    // prepare and execute the SQL query, return the data
     public function executeSQL($sql, $params = [])
     {
         $stmt = $this->dbConnection->prepare($sql);

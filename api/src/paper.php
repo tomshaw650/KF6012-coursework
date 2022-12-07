@@ -29,9 +29,11 @@ class Paper extends Endpoint
         $this->setSQL($sql);
         $sqlParams = [];
 
+        // validate track parameter
         if (filter_has_var(INPUT_GET, 'track')) {
             $track = htmlspecialchars($_GET['track']);
 
+            // Create track parameter for this query
             if (isset($where)) {
                 $where .= " AND track.short_name LIKE :track";
             } else {
@@ -40,6 +42,7 @@ class Paper extends Endpoint
             $sqlParams['track'] = '%' . $track . '%';
         }
 
+        // validate author_id parameter
         if (filter_has_var(INPUT_GET, 'author_id')) {
             if (!filter_var($_GET['author_id'], FILTER_VALIDATE_INT)) {
                 http_response_code(400);
@@ -47,6 +50,7 @@ class Paper extends Endpoint
                 die(json_encode($output));
             }
 
+            // Create author_id parameter for this query
             if (isset($where)) {
                 $where .= " AND paper_has_author.authorId = :author_id";
             } else {
@@ -55,6 +59,7 @@ class Paper extends Endpoint
             $sqlParams['author_id'] = $_GET['author_id'];
         }
 
+        // validate paper_id parameter
         if (filter_has_var(INPUT_GET, 'paper_id')) {
             if (!filter_var($_GET['paper_id'], FILTER_VALIDATE_INT)) {
                 http_response_code(400);
@@ -62,6 +67,7 @@ class Paper extends Endpoint
                 die(json_encode($output));
             }
 
+            // Create paper_id parameter for this query
             if (isset($where)) {
                 $where .= " AND paper.paper_id = :paper_id";
             } else {
@@ -70,6 +76,7 @@ class Paper extends Endpoint
             $sqlParams['paper_id'] = $_GET['paper_id'];
         }
 
+        // validate search parameter
         if (filter_has_var(INPUT_GET, 'search')) {
             $search = htmlspecialchars($_GET['search']);
 
@@ -81,6 +88,7 @@ class Paper extends Endpoint
             $sqlParams['search'] = '%' . $search . '%';
         }
 
+        // add the where clause to the SQL query
         if (isset($where)) {
             $sql .= $where;
         }

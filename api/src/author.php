@@ -27,6 +27,7 @@ class Author extends Endpoint
             LEFT JOIN paper ON (paper_has_author.paper_id = paper.paper_id)";
         $sqlParams = [];
 
+        // validate paper_id parameter
         if (filter_has_var(INPUT_GET, 'paper_id')) {
             if (!filter_var($_GET['paper_id'], FILTER_VALIDATE_INT)) {
                 http_response_code(400);
@@ -34,6 +35,7 @@ class Author extends Endpoint
                 die(json_encode($output));
             }
 
+            // Create paper_id parameter for this query
             if (isset($where)) {
                 $where .= " AND paper.paper_id = :paper_id";
             } else {
@@ -42,9 +44,11 @@ class Author extends Endpoint
             $sqlParams['paper_id'] = $_GET['paper_id'];
         }
 
+        // valudate search parameter
         if (filter_has_var(INPUT_GET, 'search')) {
             $search = htmlspecialchars($_GET['search']);
 
+            // Create search parameter for this query
             if (isset($where)) {
                 $where .= " AND (author.first_name LIKE :search OR author.last_name LIKE :search)";
             } else {
@@ -53,6 +57,7 @@ class Author extends Endpoint
             $sqlParams['search'] = '%' . $search . '%';
         }
 
+        // add where clause to SQL query
         if (isset($where)) {
             $sql .= $where;
         }

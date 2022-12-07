@@ -21,25 +21,23 @@ class Authenticate extends Endpoint
 {
     public function __construct()
     {
-        // set the database for use
         $db = new Database("db/chiplay.sqlite");
 
         // ensure the request is POST and check if username/password is set
         $this->validateRequestMethod("POST");
         $this->validateAuthParameters();
 
-        // initialise SQL and set result in $queryResult
+        // set result of SQL query in $queryResult
         $this->initialiseSQL();
         $queryResult = $db->executeSQL($this->getSQL(), $this->getSQLParams());
 
-        // run the validation against $queryResult
+        // validate $queryResult
         $this->validateUsername($queryResult);
         $this->validatePassword($queryResult);
 
-        // create a JWT
+        // create a JWT with the key 'token'
         $data['token'] = $this->createJWT($queryResult);
 
-        // set the data as signed in if validated
         $this->setData(array(
             "length" => 1,
             "message" => "signed in!",
@@ -47,10 +45,9 @@ class Authenticate extends Endpoint
         ));
     }
 
-    // set the SQL to collect account ID, name of user, username, and password. Set params as username and password
     protected function initialiseSQL()
     {
-        $sql = "SELECT account_id, name, username, password FROM account WHERE username = :username";
+        $sql = "SELECT account_id, username, password FROM account WHERE username = :username";
         $this->setSQL($sql);
         $this->setSQLParams(['username' => $_SERVER['PHP_AUTH_USER']]);
     }
