@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # paper.php
 
 [Link to Paper endpoint in production](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper)

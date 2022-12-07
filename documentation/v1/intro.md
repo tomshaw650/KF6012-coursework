@@ -14,13 +14,8 @@ This project interfaces the API with a React frontend, however it is language-ag
 
 ## Frontend
 
-The frontend is built in React with [create-react-app](https://create-react-app.dev/), using the [React Router library](https://reactrouter.com/en/main) to handle navigation.
+The frontend is built in React with [create-react-app](https://create-react-app.dev/), using the [React Router library](https://reactrouter.com/en/main) to handle Routing. The [Buffer](https://www.npmjs.com/package/buffer) library is used to encode the username and password to create a token for authentication.
 
 ## Documentation
 
 The documentation is built using [Docusaurus](https://docusaurus.io/), a static site generator.
-
-```bash
-cd my-website
-npm run start
-```

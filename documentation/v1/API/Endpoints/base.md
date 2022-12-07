@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # base.php
 
 [Link to Base endpoint in production](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/)

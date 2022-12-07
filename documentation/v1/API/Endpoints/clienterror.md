@@ -1,7 +1,3 @@
----
-sidebar_position: 4
----
-
 # clienterror.php
 
 [Link to ClientError endpoint in production](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/clienterror)

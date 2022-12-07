@@ -1,7 +1,3 @@
----
-sidebar_position: 7
----
-
 # author.php
 
 [Link to Author endpoint in production](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/author)
