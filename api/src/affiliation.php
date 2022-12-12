@@ -18,6 +18,20 @@ class Affiliation extends Endpoint
                 FROM author
                 INNER JOIN affiliation ON author.author_id = affiliation.person_id
                 GROUP BY author.author_id";
+        $sqlParams = [];
+
+        // validate search parameter
+        if (filter_has_var(INPUT_GET, 'search')) {
+            $search = htmlspecialchars($_GET['search']);
+
+            // Create search parameter for this query
+            if (isset($where)) {
+                $where .= " AND (author.first_name LIKE :search OR author.last_name LIKE :search OR affiliation.country LIKE :search OR affiliation.institution LIKE :search OR affiliation.department LIKE :search)";
+            } else {
+                $where = " WHERE (author.first_name LIKE :search OR author.last_name LIKE :search OR affiliation.country LIKE :search OR affiliation.institution LIKE :search OR affiliation.department LIKE :search)";
+            }
+            $sqlParams['search'] = '%' . $search . '%';
+        }
 
         // add where clause to SQL query
         if (isset($where)) {
@@ -25,5 +39,11 @@ class Affiliation extends Endpoint
         }
 
         $this->setSQL($sql);
+        $this->setSQLParams($sqlParams);
+    }
+
+    protected function endpointParams()
+    {
+        return ['search'];
     }
 }

@@ -20,6 +20,7 @@ import TrackPage from "./pages/TrackPage";
 import AuthorsPage from "./pages/AuthorsPage";
 import AdminPage from "./pages/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AffiliationPage from "./pages/AffiliationPage";
 
 export default function App() {
   // create authentication state variable
@@ -90,6 +91,11 @@ export default function App() {
         <Route path="/authors" element={<AuthorsPage />}>
           <Route path="/authors/:authorId" element={<AuthorModal />} />
         </Route>
+
+        <Route
+          path="/authors/affiliation"
+          element={<AffiliationPage />}
+        ></Route>
 
         {/* Admin path passes in authentication details */}
         <Route

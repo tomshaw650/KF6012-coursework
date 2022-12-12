@@ -20,7 +20,11 @@ export const navItems = [
       { name: "Rapid", link: "/papers/rapid" },
     ],
   },
-  { name: "Authors", link: "/authors" },
+  {
+    name: "Authors",
+    link: "/authors",
+    subMenu: [{ name: "Affiliation", link: "/authors/affiliation" }],
+  },
   { name: "Admin", link: "/admin" },
 ];
 
