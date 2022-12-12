@@ -30,7 +30,7 @@ export const AdminModal = () => {
   // adminList uses the data from the API request to display a dropdown to update award status
   const adminList = data.map((paper) => (
     <div key={paper.paper_id}>
-      <h3 className="flex justify-center text-lg font-bold">{paper.title}</h3>
+      <h3 className="flex justify-center text-lg font-bold px-16">{paper.title}</h3>
       <UpdateAward paperId={paperId} award={paper.has_award} />
     </div>
   ));
