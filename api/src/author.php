@@ -44,7 +44,7 @@ class Author extends Endpoint
             $sqlParams['paper_id'] = $_GET['paper_id'];
         }
 
-        // valudate search parameter
+        // validate search parameter
         if (filter_has_var(INPUT_GET, 'search')) {
             $search = htmlspecialchars($_GET['search']);
 

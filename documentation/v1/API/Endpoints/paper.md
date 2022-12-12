@@ -23,6 +23,7 @@ The `Paper` class contains the following parameters:
   - [Link to Paper endpoint with the ?track parameter](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?track=wip)
 - `?author_id` - The ID of the author of the paper. This will return all papers by the author.
   - [Link to Paper endpoint with the ?author_id parameter](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/paper?author_id=64216)
+- `?search` - This allows the client to type in the searchbar and add to the query. Here, it returns all entries where the search entry matches the paper title or abstract
 
 ## Authors
 

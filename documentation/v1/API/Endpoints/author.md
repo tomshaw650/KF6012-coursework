@@ -21,6 +21,7 @@ The `Author` class contains the following parameters:
 
 - `?paper_id` - The ID of the paper associated with an author. This will return all papers they have written or contributed to.
   - [Link to Author endpoint with the ?paper_id parameter](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/author?paper_id=64455)
+- `?search` - This allows the client to type in the searchbar and add to the query. Here, it returns all entries where the search entry matches the author's name
 
 ## Authors
 

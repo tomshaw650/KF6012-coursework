@@ -54,8 +54,8 @@ export default function AffiliationPage() {
       <Header />
       <div className="flex flex-col">
         <TitleDesc
-          title="Authors"
-          description="(View each author's affiliations)"
+          title="Affiliation"
+          description="(View each author's affiliations. Search an authors name or by country, institution, or department)"
         />
         {/* If the loading state is true, display a loading message */}
         {loading ? (

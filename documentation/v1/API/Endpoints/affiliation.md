@@ -14,6 +14,12 @@ The `Affiliation` class contains the following methods:
   - `$sql` is set to the SQL query to get all affiliation/author info from the database.
   - `setSQL()` is called to set the SQL query.
 
+## Parameters
+
+The `Affiliation` class contains the following parameters:
+
+- `?search` - This allows the client to type in the searchbar and add to the query. Here, it returns all entries where the search entry matches the author's name, or affiliations they have.
+
 ## Authors
 
 The `Affiliation` class was created by [Tom Shaw](https://github.com/tomshaw650).
