@@ -11,7 +11,7 @@ The `author.php` file contains the `Author` class, and extends the [`Endpoint`](
 The `Author` class contains the following methods:
 
 - `initialiseSQL()` - The main function for the `Author` class. Inherited from the [`Endpoint`](/v1/API/Endpoints/endpoint) class to execute an SQL query.
-  - `$sql` is set to the SQL query to get all papers from the database.
+  - `$sql` is set to the SQL query to get all authors from the database.
   - `setSQL()` is called to set the SQL query.
 - `endpointParams()` is set to an array of the parameters that can be used in the endpoint - 'paper_id'.
 

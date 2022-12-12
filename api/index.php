@@ -49,6 +49,13 @@ try {
             $endpoint = new Author();
             http_response_code(200);
             break;
+        case '/affiliation':
+        case '/affiliation/':
+        case '/affiliations':
+        case '/affiliations/':
+            $endpoint = new Affiliation();
+            http_response_code(200);
+            break;
         case '/update':
         case '/update/':
             $endpoint = new Update();
