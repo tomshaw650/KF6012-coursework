@@ -4,6 +4,12 @@
  *
  * Affiliation class finds associated country and institution with each author
  * This is interfaced by the react app to create a page to display this information.
+ * 
+ *  * @param mixed initialiseSQL - sets the SQL query and params
+ *         - if no params are passed, returns all authors
+ *         - if params are passed, filters the results
+ *         - PARAMS:
+ *             - search: returns all authors where the name or institution contains the search term
  *
  * @author Tom Shaw
  *

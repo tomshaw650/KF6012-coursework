@@ -12,6 +12,7 @@
  *             - track: returns papers from a specific track
  *             - author ID: returns all papers associated with specified author
  *             - paper ID: returns the paper related to the ID. for use in app
+ *             - search: returns all papers with a title or abstract that contains the search term
  * @param array endpointParams - creates an array of params to be passed
  *
  * @author Tom Shaw
@@ -22,7 +23,7 @@ class Paper extends Endpoint
 {
     protected function initialiseSQL()
     {
-        $sql = "SELECT DISTINCT paper.paper_id, paper.title, paper.award AS has_award, paper.abstract, track.short_name AS track_key, track.name AS track_name
+        $sql = "SELECT DISTINCT paper.paper_id, paper.title, paper.award AS has_award, paper.abstract, paper.video, track.short_name AS track_key, track.name AS track_name
                 FROM paper
                 INNER JOIN track ON (paper.track_id = track.track_id)
 				INNER JOIN paper_has_author ON (paper.paper_id = paper_has_author.paper_id)";

@@ -11,6 +11,7 @@
  *         - if params are passed, filters the results
  *         - PARAMS:
  *             - paper ID: returns associated authors from a given paper ID
+ *             - search: returns all authors with a first or last name that contains the search term
  * @param array endpointParams - creates an array of params to be passed
  *
  * @author Tom Shaw
