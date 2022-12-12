@@ -9,6 +9,7 @@
  * @params has_award - The award status of the paper, displayed using icons
  * @params location - this is to be passed a react-router useLocation variable
  * @params abstract - The abstract of the paper. uses String.prototype.substring() to limit the length of the abstract
+ * @params video - the video link associated with the paper
  * @params track_key - The short track name of the paper
  * @params track_name - The full track name of the paper
  *
@@ -49,6 +50,7 @@ export default function PaperList(props) {
           ? props.abstract.substring(0, 10) + "..."
           : props.abstract}
       </Td>
+      <td className="text-center text-lg"><a target="_blank" rel="noreferrer" href={props.video}>Link</a></td>
       <td className="text-center text-lg">{props.track_key}</td>
       <td className="text-center text-lg">{props.track_name}</td>
     </tr>

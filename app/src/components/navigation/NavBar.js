@@ -46,7 +46,7 @@ export default function NavBar() {
             </Link>
             {/* if the navigation item has a dropdown, display the dropdown items */}
             {item.subMenu && (
-              <ul className="dropdown-menu absolute mt-2 rounded-md bg-white shadow-lg">
+              <ul className="dropdown-menu absolute mt-2 rounded-md bg-white shadow-lg hover:rounded-md">
                 {item.subMenu.map((subItem) => (
                   <li key={subItem.name}>
                     <Link

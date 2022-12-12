@@ -64,6 +64,7 @@ export default function PapersPage() {
         has_award={paper.has_award}
         location={location}
         abstract={paper.abstract}
+        video={paper.video}
         track_key={paper.track_key}
         track_name={paper.track_name}
       />
@@ -111,6 +112,7 @@ export default function PapersPage() {
                 "Title",
                 "Award Status",
                 "Abstract",
+                "Video",
                 "Track Short Name",
                 "Track Full Name",
               ]}
