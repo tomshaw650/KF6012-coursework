@@ -18,6 +18,7 @@ import React, { useState, useEffect } from "react";
 import UpdatePage from "./UpdatePage";
 
 import { useNavigate } from "react-router-dom";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Buffer } from "buffer";
 import { FaTimes } from "react-icons/fa";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
@@ -26,8 +27,14 @@ export default function AdminPage(props) {
   // used to navigate user back if they close the modal
   const navigate = useNavigate();
 
+  // auto animate the removal of the error message
+  const [animationParent] = useAutoAnimate()
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  // state variable for whether the login is invalid or not
+  const [errorMessage, setErrorMessage] = useState("");
 
   // state variable for whether the password is visible or not
   const [passwordShown, setPasswordShown] = useState(false);
@@ -82,10 +89,18 @@ export default function AdminPage(props) {
         if (json.message === "signed in!") {
           localStorage.setItem("token", json.data.token);
           props.handleAuthenticated(true);
+        } else {
+          // if the response is unsuccessful, set isInvalid to true to display an error message
+          setErrorMessage("Invalid login! Please try again.");
+
+          // set a timer to clear the error message after 5 seconds
+          setTimeout(() => {
+            setErrorMessage('');
+          }, 5000);
         }
       })
       .catch((e) => {
-        console.log(e.message);
+        console.log(e);
       });
   };
 
@@ -103,7 +118,7 @@ export default function AdminPage(props) {
         <UpdatePage handleSignOut={handleSignOut} />
       ) : (
         <div className="align-center absolute top-0 flex h-full w-screen items-center justify-center bg-modal">
-          <div className="flex w-80 flex-col items-start rounded-xl bg-white p-5">
+          <div ref={animationParent} className="flex w-80 flex-col items-start rounded-xl bg-white p-5">
             {/* close button */}
             <button
               onClick={() => navigate(-1)}
@@ -142,6 +157,8 @@ export default function AdminPage(props) {
                 {passwordShown ? <IoMdEye /> : <IoMdEyeOff />}
               </button>
             </div>
+
+            {errorMessage && <label className="text-red mt-3 self-center">{errorMessage}</label>}
 
             {/* login button */}
             <input
