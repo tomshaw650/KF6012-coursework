@@ -35,6 +35,11 @@ try {
             $endpoint = new Authenticate();
             http_response_code(200);
             break;
+        case '/createaccount':
+        case '/createaccount/':
+            $endpoint = new CreateAccount();
+            http_response_code(201);
+            break;
         case '/paper':
         case '/paper/':
         case '/papers':
