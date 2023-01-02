@@ -17,27 +17,32 @@ import React, { useState, useEffect } from "react";
 
 import UpdatePage from "./UpdatePage";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Buffer } from "buffer";
 import { FaTimes } from "react-icons/fa";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-export default function AdminPage(props) {
+export default function SignupPage(props) {
   // used to navigate user back if they close the modal
   const navigate = useNavigate();
 
   // auto animate the removal of the error message
   const [animationParent] = useAutoAnimate()
 
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // state variable for whether the login is invalid or not
-  const [errorMessage, setErrorMessage] = useState("");
+  // state variable for whether the signup is invalid or not
+  const [message, setMessage] = useState("");
 
   // state variable for whether the password is visible or not
   const [passwordShown, setPasswordShown] = useState(false);
+
+  // set name as the value of the name input  
+  const handleName = (event) => {
+      setName(event.target.value);
+  };
 
   // set username as the value of the username input
   const handleUsername = (event) => {
@@ -60,49 +65,49 @@ export default function AdminPage(props) {
     props.handleAuthenticated(false);
   };
 
-  // handle the login, encoding the username and password and sending a POST request to the API with headers
-  const handleLogin = (event) => {
+  // handle the signup, inserting the values into the account table
+  const handleSignup = (event) => {
     event.preventDefault();
 
     // this means that if the user signs out, the password does not remain visible
     setPasswordShown(false);
 
-    // encode the username and password using Buffer library
-    const encodedString = Buffer.from(username + ":" + password).toString(
-      "base64"
-    );
-
-    // send a POST request to the API with the encoded string as the authorisation header
+    // send a POST request to the API with the new account details
     fetch(
-      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/auth",
+      "http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/createaccount",
       {
-        // method is POST, authorisation is a basic token
+        // method is POST
         method: "POST",
-        headers: new Headers({ Authorization: "Basic " + encodedString }),
+        // set the content type to x-www-form-urlencoded
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        // encode the username and password and send them as the body
+        body: `name=${name}&username=${username}&password=${password}`,
       }
     )
       .then((response) => {
         return response.json();
       })
       .then((json) => {
-        // if the response is successful, set the token in local storage and set authenticated to true, and close the modal
-        if (json.message === "signed in!") {
-          localStorage.setItem("token", json.data.token);
-          props.handleAuthenticated(true);
-        } else {
-          // if the response is unsuccessful, set isInvalid to true to display an error message
-          setErrorMessage("Invalid login! Please try again.");
+        // check if the account was successfully created
+        if (json.message === "account created!") {
+          // show a success message
+          setMessage("Account created successfully!");
 
-          // set a timer to clear the error message after 5 seconds
+          // navigate back to the login page after 2 seconds
           setTimeout(() => {
-            setErrorMessage('');
-          }, 5000);
+            navigate(-1);
+          }, 2000);
+        } else {
+          // show an error message
+          setMessage("Error creating account. Please try again.");
         }
       })
       .catch((e) => {
         console.log(e);
       });
-  };
+    };
 
   // if the user is already authenticated, set authenticated to true
   useEffect(() => {
@@ -128,9 +133,18 @@ export default function AdminPage(props) {
                 style={{ color: "#000000", width: "20px", height: "40px" }}
               />
               {/* icon may not be the most accessible, setting screenreader text to clarify */}
-              <span className="sr-only">Close pop-up</span>
+              <span className="sr-only">Return to login page</span>
             </button>
-            <h2 className="flex self-center text-xl font-bold">Sign in</h2>
+            <h2 className="flex self-center text-xl font-bold">Sign up</h2>
+
+            {/* name input */}
+            <input
+              type="text"
+              placeholder="Name"
+              className="mt-5 w-full rounded border border-gray-300 p-2"
+              value={name}
+              onChange={handleName}
+            />
 
             {/* username input */}
             <input
@@ -158,16 +172,22 @@ export default function AdminPage(props) {
               </button>
             </div>
 
-            {errorMessage && <label className="text-red mt-3 self-center">{errorMessage}</label>}
+            {message === "Account created successfully!" ? (
+              <label className="text-green mt-3 self-center">
+                {message}
+              </label>
+            ) : (
+              // otherwise, make the text red
+              <label className="text-red mt-3 self-center">{message}</label>
+            )}
 
-            {/* login button */}
+            {/* signup button */}
             <input
               type="button"
               value="Submit"
               className="mt-10 self-center rounded bg-green-600 py-2 px-4 font-bold text-white hover:bg-green-700"
-              onClick={handleLogin}
+              onClick={handleSignup}
             />
-            <Link to="/admin/signup" className="mt-5 self-center">Don't have an account? Sign up here!</Link>
           </div>
         </div>
       )}

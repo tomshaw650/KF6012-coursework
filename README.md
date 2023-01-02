@@ -23,6 +23,7 @@
 - http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/app/papers/doctoral
 - http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/app/papers/rapid
 - http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/app/admin
+- http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/app/admin/signup
 
 ### DOCS:
 - http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/documentation
@@ -37,5 +38,6 @@
 - Data fetching is done with a custom 'useApiRequest' hook, which can be found in the 'helpers' directory.
 - The track pages are generated dynamically using the 'react-router-dom' package, and the data is fetched from the API.
 - I chose to use modals in multiple places across the app in an interesting way. These are implemented with 'react-router-dom', using useLocation and Outlet to render modals ontop of the current page, and useNavigate to route backwards.
+- You can create new accounts! this will add a new entry into the 'account' table with a Bcrypt hashed password. Kay has been added 'kayrogage/admin', as well as galadrieltheelf/admin and gimlithedwarf/admin22 as new examples, but you can try and create your own.
 - 'react-icons' was used for the majority of icons in the app.
 

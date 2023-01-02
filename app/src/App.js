@@ -19,6 +19,7 @@ import PapersPage from "./pages/PapersPage";
 import TrackPage from "./pages/TrackPage";
 import AuthorsPage from "./pages/AuthorsPage";
 import AdminPage from "./pages/AdminPage";
+import SignupPage from "./pages/SignupPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AffiliationPage from "./pages/AffiliationPage";
 
@@ -109,6 +110,7 @@ export default function App() {
         >
           <Route path="/admin/edit/:paperId" element={<AdminModal />} />
         </Route>
+        <Route path="/admin/signup" element={<SignupPage />} />
 
         {/* 404 page */}
         <Route path="*" element={<NotFoundPage />} />
