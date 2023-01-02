@@ -47,7 +47,7 @@ class Authenticate extends Endpoint
 
     protected function initialiseSQL()
     {
-        $sql = "SELECT account_id, username, password FROM account WHERE username = :username";
+        $sql = "SELECT account_id, name, username, password FROM account WHERE username = :username";
         $this->setSQL($sql);
         $this->setSQLParams(['username' => $_SERVER['PHP_AUTH_USER']]);
     }
@@ -106,6 +106,7 @@ class Authenticate extends Endpoint
             'exp' => strtotime('+1 day', $time),
             'iss' => $_SERVER['HTTP_HOST'],
             'sub' => $queryResult[0]['account_id'],
+            'name' => $queryResult[0]['name'],
         ];
 
         // use the JWT class to encode  JWT using the secret and the HS256 hash algorithm

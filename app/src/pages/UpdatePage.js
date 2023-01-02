@@ -71,13 +71,21 @@ export default function UpdatePage(props) {
     }
   };
 
+  const getName = () => {
+    const token = localStorage.getItem("token");
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace("-", "+").replace("_", "/");
+    return JSON.parse(window.atob(base64)).name;
+  };
+
+
   return (
     <div className="h-screen">
       <Header />
       <div className="flex flex-col">
         {/* TitleDesc component displays title and description */}
         <TitleDesc
-          title="Admin"
+          title={`Admin - Welcome ${getName()}`}
           description="(Click the award icon to edit the status)"
         />
         <input
