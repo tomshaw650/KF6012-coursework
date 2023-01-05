@@ -5,7 +5,6 @@
  * The table is paginated to only show 15 results at a time, and shows ID, title and award status only
  *
  *
- *
  * @author Tom Shaw
  *
  */
@@ -77,7 +76,6 @@ export default function UpdatePage(props) {
     const base64 = base64Url.replace("-", "+").replace("_", "/");
     return JSON.parse(window.atob(base64)).name;
   };
-
 
   return (
     <div className="h-screen">

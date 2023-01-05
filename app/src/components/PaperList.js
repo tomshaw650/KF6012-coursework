@@ -27,6 +27,13 @@ export default function PaperList(props) {
     <tr className="hover:bg-gray-600">
       <td className="text-center text-lg">{props.paper_id}</td>
       <td className="text-center text-lg">{props.title}</td>
+      <Td
+        to={`authors/${props.paper_id}`}
+        state={{ background: props.location }}
+        className="text-center text-lg"
+      >
+        View
+      </Td>
       <td className="translate-x-1/2">
         {/* if the paper has an award, display a checkmark, otherwise display a cross */}
         {props.has_award === null ? (
@@ -50,8 +57,11 @@ export default function PaperList(props) {
           ? props.abstract.substring(0, 10) + "..."
           : props.abstract}
       </Td>
-      <td className="text-center text-lg"><a target="_blank" rel="noreferrer" href={props.video}>Link</a></td>
-      <td className="text-center text-lg">{props.track_key}</td>
+      <td className="text-center text-lg">
+        <a target="_blank" rel="noreferrer" href={props.video}>
+          Link
+        </a>
+      </td>
       <td className="text-center text-lg">{props.track_name}</td>
     </tr>
   );

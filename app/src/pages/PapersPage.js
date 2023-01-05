@@ -65,7 +65,6 @@ export default function PapersPage() {
         location={location}
         abstract={paper.abstract}
         video={paper.video}
-        track_key={paper.track_key}
         track_name={paper.track_name}
       />
     ));
@@ -87,7 +86,7 @@ export default function PapersPage() {
         {/* TitleDesc component displays title and description */}
         <TitleDesc
           title="All Papers"
-          description="(Click the abstract to view the full body of text)"
+          description="(Click the author's name to see the full author list for a paper. Click the abstract to view the full body of text)"
         />
         {/* if loading is true, display loading message */}
         {loading ? (
@@ -110,10 +109,10 @@ export default function PapersPage() {
               headers={[
                 "Paper ID",
                 "Title",
+                "Authors",
                 "Award Status",
                 "Abstract",
                 "Video",
-                "Track Short Name",
                 "Track Full Name",
               ]}
               tableBody={paperList}

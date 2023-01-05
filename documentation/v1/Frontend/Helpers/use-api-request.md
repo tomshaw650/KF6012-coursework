@@ -2,7 +2,7 @@
 
 ## Overview
 
-`useApiRequest` is a custom hook that is used to make API requests. It uses the `useEffect` hook to fetch the data from a passed in URL. It returns the data and loading state. It is agnostic to any of the pages and is used for all fetching across the app.
+`useApiRequest` is a custom hook that is used to make API requests. It uses the `useEffect` hook to fetch the data from a passed in URL. It returns the data and loading state. It is agnostic to any of the pages and is used for fetching across the app.
 
 ## State Variables
 

@@ -6,7 +6,7 @@
 
 ## How it works
 
-The papers are fetched with `useApiRequest`, and pagination/searching/dropdown filtering is set. `adminList` is created with the `AdminList` component mapped with the fetched data, and passed into the table body to show the papers. The `UpdateAward` component is passed the paper ID and the current award status, and is rendered in the table body.
+The user's name is displayed at the top of the page. The papers are fetched with `useApiRequest`, and pagination/searching/dropdown filtering is set. `adminList` is created with the `AdminList` component mapped with the fetched data, and passed into the table body to show the papers. The `UpdateAward` component is passed the paper ID and the current award status, and is rendered in the table body.
 
 ## Parameters
 

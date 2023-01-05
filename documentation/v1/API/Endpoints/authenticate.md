@@ -20,6 +20,28 @@ The `Authenticate` class contains the following methods:
 - `validatePassword()` - Validates the password is correct.
 - `createJWT()` - Creates a JWT token for the user, using the `FirebaseJWT\JWT` class.
 
+## Examples
+
+A GET request to the `Authenticate` endpoint:
+
+```http
+http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/auth
+```
+
+The response will be
+
+```json
+{
+  "length": 0,
+  "message": "invalid request method",
+  "data": null
+}
+```
+
+## HTTP Status Codes
+
+The `Authenticate` endpoint can return HTTP 200, 401, 405 status codes.
+
 ## Authors
 
 The `Authenticate` class was created by [Tom Shaw](https://github.com/tomshaw650) and [John Rooksby](https://github.com/johnrooksby), using third party code to create a JWT from [Firebase](https://github.com/firebase/php-jwt)

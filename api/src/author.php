@@ -22,10 +22,6 @@ class Author extends Endpoint
 {
     protected function initialiseSQL()
     {
-        $sql = "SELECT DISTINCT author.author_id, author.first_name, author.middle_initial, author.last_name
-            FROM author
-            LEFT JOIN paper_has_author ON (author.author_id = paper_has_author.authorId)
-            LEFT JOIN paper ON (paper_has_author.paper_id = paper.paper_id)";
         $sqlParams = [];
 
         // validate paper_id parameter
@@ -58,10 +54,18 @@ class Author extends Endpoint
             $sqlParams['search'] = '%' . $search . '%';
         }
 
-        // add where clause to SQL query
-        if (isset($where)) {
-            $sql .= $where;
+        // ensure where is set
+        if (!isset($where)) {
+            $where = " WHERE 1=1";
         }
+
+        $sql = "SELECT DISTINCT author.author_id, author.first_name, author.middle_initial, author.last_name, MIN(affiliation.institution) AS institution, MIN(affiliation.country) AS country
+        FROM author
+        LEFT JOIN paper_has_author ON (author.author_id = paper_has_author.authorId)
+        LEFT JOIN paper ON (paper_has_author.paper_id = paper.paper_id)
+        LEFT JOIN affiliation ON (author.author_id = affiliation.person_id)
+        " . $where . "
+        GROUP BY author.author_id";
 
         $this->setSQL($sql);
         $this->setSQLParams($sqlParams);

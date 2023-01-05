@@ -1,7 +1,5 @@
 # clienterror.php
 
-[Link to ClientError endpoint in production](http://unn-w19025481.newnumyspace.co.uk/kf6012/coursework/api/clienterror)
-
 The `clienterror.php` file is the base class for all client error endpoints. It is located in the `src` directory of the API.
 
 The `clienterror.php` file contains the `ClientError` class, and extends the [`Endpoint`](/v1/API/Endpoints/endpoint) class. It is called when a GET request fails.

@@ -13,6 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthorModal } from "./components/modals/AuthorModal";
 import { AbstractModal } from "./components/modals/AbstractModal";
 import { AdminModal } from "./components/modals/AdminModal";
+import { PaperAuthorModal } from "./components/modals/PaperAuthorModal";
 
 import LandingPage from "./pages/LandingPage";
 import PapersPage from "./pages/PapersPage";
@@ -47,6 +48,10 @@ export default function App() {
         {/* Papers path routes to the Papers page, creating a modal on selecting an abstract */}
         <Route path="/papers" element={<PapersPage />}>
           <Route path="/papers/view/:paperId" element={<AbstractModal />} />
+          <Route
+            path="/papers/authors/:paperId"
+            element={<PaperAuthorModal />}
+          />
         </Route>
 
         {/* Tracks path routes to the Tracks page, set with a prpo. Creates a modal on selecting an abstract */}
@@ -123,6 +128,9 @@ export default function App() {
       )}
       {background && (
         <Route path="admin/edit/:paperId" element={<AdminModal />} />
+      )}
+      {background && (
+        <Route path="papers/authors/:paperId" element={<PaperAuthorModal />} />
       )}
     </div>
   );

@@ -23,11 +23,7 @@ class Paper extends Endpoint
 {
     protected function initialiseSQL()
     {
-        $sql = "SELECT DISTINCT paper.paper_id, paper.title, paper.award AS has_award, paper.abstract, paper.video, track.short_name AS track_key, track.name AS track_name
-                FROM paper
-                INNER JOIN track ON (paper.track_id = track.track_id)
-				INNER JOIN paper_has_author ON (paper.paper_id = paper_has_author.paper_id)";
-        $this->setSQL($sql);
+        // set the SQL params as an array
         $sqlParams = [];
 
         // validate track parameter
@@ -89,11 +85,21 @@ class Paper extends Endpoint
             $sqlParams['search'] = '%' . $search . '%';
         }
 
-        // add the where clause to the SQL query
-        if (isset($where)) {
-            $sql .= $where;
+        // ensure where is set
+        if (!isset($where)) {
+            $where = " WHERE 1=1";
         }
 
+        // create the sql statement with the where clause added before the group by clause
+        $sql = "SELECT paper.paper_id, paper.title, MIN(author.first_name) AS first_name, MIN(author.middle_initial) AS middle_initial, MIN(author.last_name) AS last_name, paper.award AS has_award, paper.abstract, paper.video, track.short_name AS track_key, track.name AS track_name
+        FROM paper
+        INNER JOIN track ON (paper.track_id = track.track_id)
+        INNER JOIN paper_has_author ON (paper.paper_id = paper_has_author.paper_id)
+        INNER JOIN author ON (author.author_id = paper_has_author.authorId)
+        " . $where . "
+        GROUP BY paper.paper_id, paper.title, paper.award, paper.abstract, paper.video, track.short_name, track.name";
+
+        // set the SQL query and params
         $this->setSQL($sql);
         $this->setSQLParams($sqlParams);
     }

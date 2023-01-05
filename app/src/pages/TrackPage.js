@@ -70,7 +70,6 @@ export default function TrackPage(props) {
         location={location}
         abstract={paper.abstract}
         video={paper.video}
-        track_key={paper.track_key}
         track_name={paper.track_name}
       />
     ));
@@ -117,10 +116,10 @@ export default function TrackPage(props) {
               headers={[
                 "Paper ID",
                 "Title",
+                "Authors",
                 "Award Status",
                 "Abstract",
                 "Video",
-                "Track Short Name",
                 "Track Full Name",
               ]}
               tableBody={paperList}

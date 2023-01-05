@@ -17,6 +17,28 @@ The `CreateAccount` class contains the following methods:
 - `validateRequestMethod()` - Validates the request method is a POST request.
 - `validateUsername()` - Takes the posted username and checks if it is already in the database.
 
+## Examples
+
+A POST request to the `CreateAccount` endpoint with the following data:
+
+- `name` - The name of the user
+- `username` - The username of the user
+- `password` - The password of the user
+
+Will provide the following response:
+
+```json
+{
+  "length": 1,
+  "message": "account created!",
+  "data": []
+}
+```
+
+## HTTP Status Codes
+
+The `CreateAccount` endpoint can return 201, 405 or 500 status codes.
+
 ## Authors
 
 The `CreateAccount` class was created by [Tom Shaw](https://github.com/tomshaw650).

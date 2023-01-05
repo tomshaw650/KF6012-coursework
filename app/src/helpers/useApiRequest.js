@@ -30,7 +30,7 @@ export default function useApiRequest(url) {
         });
     };
     fetchData();
-  }, [url, data]);
+  }, [url]);
 
   return { loading, data };
 }
